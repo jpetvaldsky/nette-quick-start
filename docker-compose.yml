@@ -3,7 +3,7 @@ version: '2'
 services:
   webserver:
     build: ./Docker
-    image: nette_dev_web
+    image: szif_dev_web
     ports:
       - "80:80"
       - "443:443"
