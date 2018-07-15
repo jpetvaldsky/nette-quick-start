@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SZIF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="vendors/css/slider-pro.min.css"/>    
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/loader.css" />
+</head>
+<body class="hidden">    
+    <header id="header" class="popup">
+        <div class="headerBackground popup"></div>
+    </header>
+    <div id="container">
+        <div class="maskShape shapeTopPopup"></div>
+        <div class="popupHeadline">
+            <h1 data-value="name"></h1>
+            <h3 data-value="title" data-parser="uppercase"></h3>
+            <div class="subInfo"><span data-value="location" data-parser="uppercase"></span> <span>/</span> <span data-value="jobtype" data-parser="uppercase"></span> <span>/</span> <span data-value="salary" data-parser="uppercase" data-suffix=".PT"></span></div>
+        </div>
+        <div class="wrapper popup">
+            <div class="wrapperBackground">
+                <div class="content">
+                    <div id="popis-prace" class="contentBlock positionPopup">
+                        <h2>ČÍM SE BUDETE ZABÝVAT</h2>
+                        <p data-value="description" data-parser="markdown"></p>
+                    </div>
+                    <!-- /.positionPopup .contentBlock -->
+                    <div id="benefity" class="contentBlock benefits">
+                        <h2>CO U NÁS ZÍSKÁTE</h2>
+                        <div class="benefitList clearfix">
+                        </div>
+                    </div>
+                    <!-- /.benefits .contentBlock -->
+                    <div id="vas-nadrizeny" class="contentBlock hrTeam">
+                        <h2>KDO BUDE VAŠ NADŘÍZENÝ</h2>
+                        <div class="peopleHR">
+                            <!-- HR 1 -->
+                            <div class="hr-person">
+                                <div class="inner">
+                                    <div class="hr-person-image">
+                                        <img src="./img/hr-team/katerina-bayerova.png" alt="">
+                                    </div>
+                                    <h3>Kateřina Bayerová</h3>
+                                    <h4>Oddělení právních služeb a přímých plateb</h4>
+                                    <p class="hr-about">“Ve SZIF pracuji jako vedoucí v oddělení Compilance. Mým úkolem je zajistit dodržování právních předpisů a vnitropodnikových směrnic. Mám rád vysokohorskou turistiku a ve volném čase se ještě věnuji amatérskému včelařství.”</p>
+                                    <div class="textCenter">
+                                            <a href="https://www.linkedin.com/in/kate%C5%99ina-bayerov%C3%A1-3b527812a/" target="_blank" class="button btn-outline">Můj LinkedIn profil</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.hrTeam .contentBlock -->
+                    
+                    <div id="lokace" class="contentBlock hidden">
+                        <h2>VAŠE ŽIDLE BUDE</h2>
+                    </div>
+
+                    <div id="mam-zajem" class="contentBlock">
+                        <h2>LÍBÍ SE VÁM TATO POZICE?</h2>
+                        <p class="textCenter applyDate">Tak si rychle podejte přihlášku, uzávěrka přihlášek je už <strong data-value="dateExpire"></strong>.</p><br>
+                        <div class="textCenter applyButton">
+                            <a href="#" data-value="szif-url" data-location="href" target="_blank" class="button btn-large btn-extra">ANO, mám zájem</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="maskShape shapeBottom"></div>
+        </div>
+        
+    </div>
+
+    <div class="floatingButton closePopup">
+            <a href="index.html"></a>
+        </div>
+    
+    <div class="floatingButton scrollTop hidden">
+        <a href="#top"></a>
+    </div>
+
+
+    <footer id="footer">
+        <div class="content">
+            <div class="logo">
+                <a href="http://www.szif.cz"><img src="./img/logo-bw@2x.png"></a>
+            </div>
+            <div class="footerText">
+                <p>© 2018 Státní zemědělský intervenční fond <span class="splitter">&nbsp;/&nbsp;</span> Ve Smečkách 33, Praha 1 <span class="splitter">&nbsp;/&nbsp;</span> 222 871 871 <span class="splitter">&nbsp;/&nbsp;</span> <a href="#">info@szif.cz</a> <span class="splitter">&nbsp;/&nbsp;</span> <a href="#">Hlídací pes</a> <span class="splitter">&nbsp;/&nbsp;</span> <a href="#"><i class="fa fa-facebook-official"></i></a></p>
+                <p>Naše další projekty: <a href="https://www.eklasa.cz/" target="_blank">Klasa</a> <span class="splitter">&nbsp;/&nbsp;</span> <a href="https://www.regionalnipotravina.cz/" target="_blank">Regionální potravina</a> <span class="splitter">&nbsp;/&nbsp;</span> <a href="https://ovocedoskol.szif.cz/web/Default.aspx" target="_blank">Ovoce a zelenina do škol</a> <span class="splitter">&nbsp;/&nbsp;</span> <a href="https://www.szif.cz/irj/portal/szif/podpora-spotreby-skolniho-mleka" target="_blank">Mléko do škol</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="vendors/js/jquery.min.js"></script>
+    <script src="vendors/js/jquery.sliderPro.min.js"></script>
+    <script src="vendors/js/select2.min.js"></script>
+    <script src="vendors/js/showdown.min.js"></script>
+    
+    
+    <script src="js/app.js"></script>
+    <script src="js/jobdetail.js"></script>
+</body>
+</html>

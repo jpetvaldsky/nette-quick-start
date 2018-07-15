@@ -1,0 +1,77 @@
+{define formComponent}
+	{switch $formItem->type}
+		{case "inline-elements"}
+			<div class="form-inline">
+				<legend class="mb-2 col-form-label col-sm-3 pl-0 pt-0">{$formItem->label}</legend>
+				{foreach $formItem->elements as $item}
+					{include formComponent, formItem => $item, inline=>true, feedback => $formItem->name}
+				{/foreach}
+				<div id="{$formItem->name}-feedback" class="invalid-feedback">{$formItem->invalidFeedback}</div>
+			</div>
+		{case "radio"}
+			<div class="form-group row">
+				
+				<legend class="col-form-label col-sm-2">{$formItem->label}</legend>
+				{foreach $formItem->option as $opt}
+				<div class="form-check form-check-inline pl-3">
+					{dump $formData[$formItem->name]}
+					{dump $opt}
+					<input type="{$formItem->type}" value="{$opt}" id="{$formItem->name}-{$opt}" name="{$formItem->name}[]" {if $formData[$formItem->name]==$opt}checked="checked"{/if} data-validation="{$formItem->validation}" placeholder="{$formItem->placeholder}" class="form-check-input">
+					<label class="form-check-label pl-2" for="{$formItem->name}-{$opt}">{$opt}</label>
+				</div>
+				{/foreach}
+				{ifset $formItem->helper}
+				<small class="text-muted">{$formItem->helper}</small>
+				{/ifset}
+			</div>
+		{case "select"}
+			<div class="{if $inline}input-group mb-2 mr-sm-2{else}form-group row{/if}">
+				{if $formItem->label != ""}
+				<label for="{$formItem->name}" class="col-sm-2 col-form-label">{$formItem->label}</label>
+				{/if}
+				{if !$inline}<div class="{ifset $formItem->cls}{$formItem->cls}{else}col-sm-10{/ifset}">{/if}
+					<select class="form-control" name="{$formItem->name}" data-validation="{$formItem->validation}" {ifset $feedback}data-feedback="{$feedback}-feedback"{/ifset}>
+						<option value="-">{$formItem->placeholder}</option>
+						{switch $formItem->option}
+							{case "--countries--"}
+							{foreach $countries as $option}
+								<option value="{$option}" {ifset $formData[$formItem->name]}{if $formData[$formItem->name]==$option}selected="selected"{/if}{/ifset}>{$option}</option>
+							{/foreach}
+							{default}
+							{foreach $formItem->option as $option}
+								<option value="{$option}" {ifset $formData[$formItem->name]}{if $formData[$formItem->name]==$option}selected="selected"{/if}{/ifset} >{$option}</option>
+							{/foreach}
+						{/switch}
+					</select>
+				{if !$inline}</div>{/if}
+			</div>
+		{case "text-disabled"}
+			<div class="form-group">
+				<label for="{$formItem->name}">{$formItem->label}</label>
+				<input type="{$formItem->type}" class="form-control" id="{$formItem->name}" disabled="disabled" name="{$formItem->name}" 
+{ifset $formData[$formItem->name]}
+value="{ifset $formItem->format}
+{if $formItem->format == "date"}
+{$formData[$formItem->name]|date:'j. n. Y'}
+{elseif $formItem->format == "firstUpper"}
+{$formData[$formItem->name]|firstUpper}
+{else}
+{$formData[$formItem->name]}
+{/if}{else}{$formData[$formItem->name]}{/ifset}"{/ifset}>
+			</div>
+		{default}
+			<div class="form-group">
+				<label for="{$formItem->name}">{$formItem->label}</label>
+				<input type="{$formItem->type}" class="form-control" id="{$formItem->name}" name="{$formItem->name}" 
+{ifset $formData[$formItem->name]}
+value="{$formData[$formItem->name]}"
+{/ifset} 
+data-validation="{$formItem->validation}" data-rule="{$formItem->rule}" placeholder="{$formItem->placeholder}">
+				<div class="valid-feedback">{$json->serviceText->validFeedback}</div>
+				<div class="invalid-feedback">{$formItem->invalidFeedback}</div>
+				{ifset $formItem->helper}
+				<small class="text-muted">{$formItem->helper}</small>
+				{/ifset}
+			</div>
+	{/switch}
+{/define}

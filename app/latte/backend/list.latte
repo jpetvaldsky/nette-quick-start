@@ -1,0 +1,68 @@
+{layout '../@layout.latte'}
+{block content}
+	<div class="content">
+		<div class="inner">
+			<h2 n:block="title">“Marketplace Team 2.0” selection - Backend</h2>
+			<div class="text-content">
+				{dump $users}
+				{ifset $users}
+				{var $userCounter = 0}
+				{var $validCounter = 0}
+				{var $applyCounter = 0}
+				<table n:if="$users" style="width: 100%;">
+					<thead>
+						<tr>
+							<th>&nbsp;</th>
+							<th>Email</th>
+							<th>Name</th>
+							<th class="text-c">Valid</th>
+							<th class="text-c">Applied</th>
+							<th class="text-c">Legal Entity</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+			    <tr n:foreach="$users as $u">
+						{var $userCounter = $userCounter+1;}
+						<td><strong style="color: #00AFD2">{$iterator->counter}</strong></td>
+						<td>{$u['email']}</td>
+						<td>{$u["name"] != null ? $u["name"]: !"&nbsp;"}</td>
+						<td class="text-c">{if ($u["email_is_valid"] == 1)}{var $validCounter = $validCounter+1}<i class="fa fa-check-square-o" aria-hidden="true"></i>{else}<i class="fa fa-times" aria-hidden="true"></i>{/if}</td>
+						<td class="text-c">{if ($u["submission_date"] != null)}{var $applyCounter = $applyCounter+1}{$u["submission_date"]|date:'j. n. Y'}{else}<i class="fa fa-times" aria-hidden="true"></i>{/if}</td>
+						<td class="text-c">{$u["legal_entity"] != null ? $u["legal_entity"]: !"&nbsp;"}</td>
+						<td class="text-c"><a href="/backend/detail/{$u['id']}">detail</a>
+					</tr>
+					<tr style="display: none;">
+						<td colspan="4">
+							Users total: <strong>{$userCounter}</strong><br>Valid Users: <strong>{$validCounter}</strong>
+						</td>
+						<td colspan="2">
+							Applications: <strong>{$applyCounter}</strong>
+						</td>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+				</table><br>
+				<div class="button-holder">
+					<a href="/backend/export-data" class="button button-large">Export Data <i class="fa fa-arrow-right" aria-hidden="true"></i> <i class="fa fa-file-excel-o" aria-hidden="true"></i> <small>(CSV)</small></a>
+				</div>
+				{else}
+					<p style="text-align: center;"><em>No users data found...</em></p>
+				{/ifset}
+			</div>
+		</div><!-- /.inner -->
+	</div><!-- /.content -->
+	<style>
+		.text-c {
+			text-align: center;
+		}
+		tr {
+			border-bottom: 1px solid #EDEDED;
+		}
+		th, td {
+			font-size: 14px;
+			line-height: 18px;
+			text-align: left;
+			vertical-align: top;
+			padding: 2px 5px;
+		}
+	</style>
+{/block}

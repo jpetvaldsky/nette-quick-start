@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Ing. Aneta Hevrelová",
+        "profile": "aneta-heverlova.png",
+        "position": "Head of HR / Hlavní město Praha",
+        "desc": "“Ve SZIF pracuji již 5 let na pozici Head of HR a mám na starost nábor pro hlavní město Praha.<br>Ve svém volném čase se věnuji křížovkám, vnoučatum a jízdě na kole.”",
+        "tip": "“Nebojte se být sama sebou u pohovoru, i bez praxe se můžete uchytit.<br>Důležité je se nás nebát a usmívat se.”"
+    },
+    {
+        "name": "Mgr. Honza Novák",
+        "profile": "honza-novak.png",
+        "position": "Koordinátor / Ústí nad Labem",
+        "desc": "“Pracuji jako koordinátor a mám na starost dotace pro rybáře. Vybral jsem si tento obor, protože sám jsem velmi vášnivý rybář a když uspějete u pohovoru tak Vám prozradím kde nejvíce berou.”",
+        "tip": "“Osobně ocěnuji transparentnost u pohovoru, pokud něco neumíte tak to přiznejte a třeba zjistíme, že se to půjde v pohodě doučit.”"
+    },
+    {
+        "name": "Mgr. Kateřina Bayerová",
+        "profile": "katerina-bayerova.png",
+        "position": "Compliance Department Leader / Olomouc",
+        "desc": "Ve SZIF pracuji jako vedoucí v oddělení Compilance. Mým úkolem je zajistit dodržování právních předpisů a vnitropodnikových směrnic. Mám rád vysokohorskou turistiku a ve volném čase se ještě věnuji amatérskému včelařství.",
+        "tip": ""
+    },
+    {
+        "name": "Ing. Ondřej Kudibal",
+        "profile": "ondrej-kudibal.png",
+        "position": "Odbor financí a rozpočtu / Praha",
+        "desc": "Mým pracovištěm je Odbor financí a rozpočtu. SZIF jsem si vybral po dokončení magisterského studia na ČZU a už zde pracuji 14 let. Tabulky a grafy jsou můj život, ale rád si odpočinu při procházkách s mými dvěma psy – Sherlockem a Watsonem. A největším relaxem je pro mě káva v kombinaci s dobrou knihou.",
+        "tip": ""
+    },
+    {
+        "name": "Ing. Tereza Kašparová",
+        "profile": "tereza-kasparova.png",
+        "position": "Head of Legal / Praha",
+        "desc": "Pro SZIF pracuji již řadu let, z toho poslední tři v Odboru legislativně právním. Chtěla jsem využít své znalosti práva tam, kde to bude mít smysl. A to se mi tu podařilo. Když nejsem v kanceláři, najdete mě pravděpodobně na lekci jógy, které jsem v poslední době zcela propadla.",
+        "tip": ""
+    },
+    {
+        "name": "Mgr. Vojtěch Kopecký",
+        "profile": "vojtech-kopecky.png",
+        "position": "",
+        "desc": "",
+        "tip": ""
+    }
+]
+
+

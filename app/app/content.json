@@ -1,0 +1,18 @@
+{
+	"application": {
+		"test": "XXX"
+	},
+	"serviceText": {
+		"validFeedback": "This field is valid.",
+		"placeholderImageUpload": "Choose File",
+		"helperImageUpload": "(The file must be of type: gif, jpg, png, pdf)"
+	},
+	"flashMessage": {
+		"authorization": {
+			"success": "Your authorization was successful.",
+			"invalidEmail": "Your email is invalid.",
+			"emailSent": "Authorization email was sent to your email address.",
+			"disabled": "User account with this email is disabled, please contact responsible person."
+		}
+	}
+}

@@ -1,0 +1,89 @@
+[
+    {
+        "name": "Pružná pracovní doba",
+        "icon": "alarm.png",
+        "desc": [
+            "Jste spíše ranní ptáče nebo sova? U nás si zvolíte pracovní dobu sami tak, aby Vám co nejvíce vyhovovala.",
+            "Jednou si přispat a podruhé jít domů dříve? U nás v SZIF to není problém.",
+            "Pracovní dobu si můžeme volit sami. Proto v SZIF rádi pracujeme."
+        ]
+    },
+    {
+        "name": "25 dní dovolené",
+        "icon": "vacation.png",
+        "desc": [
+            "Dovolená na Bali nebo na chatě v Beskydech? U nás budete mít dostatek volného času na to stihnout oboje.",
+            "Věříme ve work-life balance a víme, že být čas od času offline nám pomůže tomu, že jsme pak v práci výkonnější.",
+            "V SZIF vám dáme dostatek volna na splnění všech vašich cestovatelských snů."
+        ]
+    },
+    {
+        "name": "5 Sick Days",
+        "icon": "sickness.png",
+        "desc": [
+            "Nachlazení se má vyležet a ne přecházet. To v SZIF dobře víme, a proto mají naši zaměstnanci 5 dní volna navíc.",
+            "Každý den nám není do skoku. V SZIF si v tom případě můžeme vybrat sick day. Na celý rok jich máme rovnou 5.",
+            "Ať už se jedná o chřipku nebo náročný víkend, v SZIF máme pro tyto případy 5 dní volna navíc."
+        ]
+    },
+    {
+        "name": "Mobilní telefon",
+        "icon": "mobile.png",
+        "desc": [
+            "S novým telefonem zvládnete všechny pracovní i osobní hovory, a na surfování dostanete 1,5G dat každý měsíc.",
+            "V SZIF dostáváme při nástupu nový telefon. Jeho největší výhoda? Neomezený tarif, se kterým obvoláte celou rodinu a 1,5 G dat navíc.",
+            "Můžete se těšit na nadupaný smartphone, se kterým budete moct neomezeně volat celé rodině i známým. A surfovat do aleluja."]
+    },
+    {
+        "name": "Příjemný pracovní kolektiv",
+        "icon": "party.png",
+        "desc": [
+            "Pohodový a přátelský tým kolegů, díky kterým nebudete jen chodit do práce, ale do SZIFu.",
+            "Nejsme další nudný úřad. V SZIF se můžete těšit na skvělé kolegy, díky kterým se budete do práce těšit.",
+            "V SZIF pracujeme s lidmi, které máme rádi, a proto nás práce baví o to víc!"
+        ]
+    },
+    {
+        "name": "Stravenky",
+        "icon": "burger.png",
+        "desc": [
+            "S prázdným žaludkem se špatně pracuje. Se stravenkami v hodnotě 100 Kč si ale každý den můžete dát, na co budete mít chuť.",
+            "Hlady se u nás rozhodně trápit nebudete. Díky stravenkám si dáte každý den něco dobrého.",
+            "Jeden den svíčková jako od maminky a druhý třeba Pho Bo? Se stravenkami žádný problém."
+        ]
+    },
+    {
+        "name": "Vzdělání a osobní rozvoj",
+        "icon": "education.png",
+        "desc": [
+            "U nás v SZIF podporujeme vzdělávání našich zaměstnanců. Kromě podpory dalšího studia se můžete těšit na zajímavé semináře a eventy.",
+            "Dobrý zaměstnanec na sobě neustále pracuje a zajímá se o novinky ve svém oboru. A my Vám k tomu dáme veškerou podporu.",
+            "Školou to nekončí. V SZIF vám dáme možnost na sobě neustále pracovat – semináře s odborníky z praxe, možnost dalšího studia a mnohem víc."
+            ]
+    },
+    {
+        "name": "Pracovní prostředí",
+        "icon": "soffa.png",
+        "desc": [
+            "Zapomeňte na nudné a šedivé kanceláře. U nás se vám bude pracovat jako doma. Nebo ještě lépe!"
+        ]
+    },
+    {
+        "name": "Benefit karta",
+        "icon": "card.png",
+        "desc": [
+            "Hromada slev na všechno co vás jen napadne. Od kosmetiky po kurzy vaření, nebudete vědět, co si vybrat dřív!",
+            "S Benefit kartou si můžete zajít po práci na kosmetiku nebo masáž a po práci se náležitě rozmazlit.",
+            "Udělejte radost sobě nebo někomu z rodiny. Co takhle zkusit konečně bungee jumping nebo koupit mamince pobyt v lázních?"
+        ]
+    },
+    {
+        "name": "Práce v centru dění",
+        "icon": "train.png",
+        "desc": [
+            "Ať už budete pracovat v kanceláři v centru města nebo jezdit za klienty – vždy budete v centru dění.",
+            "Zapomeňte na dlouhé dojíždění do práce. Naše kanceláře najdete v centru každého většího města.",
+            "Naše kanceláře jsou v blízkosti restaurací, kaváren, obchodů i MHD. Stihnete tak vybavit vše potřebné a nebudete muset dlouho dojíždět."
+        ]
+    }
+]

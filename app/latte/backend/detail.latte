@@ -1,0 +1,80 @@
+{layout '../@layout.latte'}
+{block content}
+	<div class="content">
+		<div class="inner">
+			<h2 n:block="title" style="margin-bottom: 0px;">{$user["name"]}</h2>
+				<div class="text-content" style="max-width: 480px;">
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+							<strong>Email:</strong> <a href="mailto:{$user['email']}">{$user["email"]}</a>
+					</div>
+          <div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>GSM:</strong> {$user["gsm"]}
+					</div>
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>Gender:</strong> {$user["gender"]}
+					</div>
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>Age:</strong> {$user["age"]}
+					</div>
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>Validation date:</strong> {$user["validation_date"]|date:'j. n. Y H:i'}
+					</div>
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>Application date:</strong> {$user["submission_date"]|date:'j. n. Y H:i'}
+					</div>
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>Legal Entity:</strong> {$user["legal_entity"]}<br>
+					</div>
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>Country</strong><br>{$user["country"]}
+					</div>
+					{ifset $user["competence"]}
+						<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+							<strong>Competence:</strong><br>
+							<div n:foreach="$user['competence'] as $c">{$c["name"]}</div>
+						</div>
+					{/ifset}
+					{ifset $user["skills"]}
+						<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+							<strong>Role:</strong><br>
+							<div n:foreach="$user['skills'] as $c">{$c["name"]}</div>
+						</div>
+					{/ifset}
+
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>Name of the participants in the team / Individual Applicant</strong><br>{$user["team-participants"]}
+					</div>
+          <div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>In which would you like to explore new ideas and products in code.yapıkredi Hackathon?</strong><br>{$user["new-ideas"]}
+					</div>
+          <div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>If you were to create a new function in mobile banking app, what would it be? Why?</strong><br>{$user["new-function"]}
+					</div>
+          <div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>In line with the technological developments, where you see banking sector in 10 years time?</strong><br>{$user["future-vision"]}
+					</div>
+          <div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>Did you attend any Hackathon before? Which one?</strong><br>{$user["hackathon-attend"]}
+					</div>
+          <div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>English Proficiency Level </strong><br>{$user["english_level"]}
+					</div>
+          {*
+					{if $user['cv_link'] != ''}
+					<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+						<strong>CV</strong> <a href="{$user['cv_link']}" target="_blank">open</a><br>
+					</div>
+					{/if}
+
+					{if $user['photo_link'] != ''}
+						<div style="padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px dotted #dddddd">
+							<strong>Photo</strong> <img src="{$user['photo_link']}" style="height: 300px; margin-top: 10px; display: block;"><br>
+						</div>
+					{/if}*}
+				</div>
+				<br>
+				<p style="text-align:center; margin: 0;"><a href="/backend" class="button button-regular">&lt; Back</a></p>
+		</div><!-- /.inner -->
+	</div><!-- /.content -->
+
+{/block}
