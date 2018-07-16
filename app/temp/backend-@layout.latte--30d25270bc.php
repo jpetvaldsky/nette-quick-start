@@ -9,7 +9,14 @@ class Template30d25270bc extends Latte\Runtime\Template
 	function main()
 	{
 		extract($this->params);
+		ob_start(function () {});
+		$this->createTemplate('components/flash-messages.latte', get_defined_vars(), "includeblock")->renderToContentType('html');
+		echo rtrim(ob_get_clean());
+		ob_start(function () {});
+		$this->createTemplate('components/no-entry.latte', get_defined_vars(), "includeblock")->renderToContentType('html');
+		echo rtrim(ob_get_clean());
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,89 +38,42 @@ class Template30d25270bc extends Latte\Runtime\Template
   </head>
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 <?php
-		/* line 21 */
+		/* line 24 */
 		$this->createTemplate('components/header.latte', $this->params, "include")->renderToContentType('html');
 ?>
     <div class="app-body">
-      <div class="sidebar">
-        <nav class="sidebar-nav">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <i class="nav-icon icon-home"></i> Úvodní strana
-              </a>
-            </li>
-            <li class="nav-title">Správa obsahu</li>
-            <li class="nav-item">
-              <a class="nav-link" href="colors.html">
-                <i class="nav-icon icon-organization"></i> Volné pozice</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-energy"></i> HR Team</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-notebook"></i> Novinky (Blog)</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-question"></i> FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-speech"></i> O SZIFu</a>
-            </li>
-            <li class="nav-title">Související obsah</li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="nav-icon icon-chemistry"></i> Obor</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="nav-icon icon-map"></i> Kraje</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+<?php
+		/* line 26 */
+		$this->createTemplate('components/sidebar.latte', $this->params, "include")->renderToContentType('html');
+?>
       <main class="main">
         <!-- Breadcrumb-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active"><i class="nav-icon icon-home"></i> Úvodní strana</li>
-          
-          <!-- Breadcrumb Menu-->
-          <li class="breadcrumb-menu d-md-down-none">
-            <div class="btn-group" role="group" aria-label="Button group">
-              <a class="btn" href="#">
-                <i class="icon-plus"></i> Přidat novou položku
-              </a>              
-            </div>
-          </li>
-        </ol>
+<?php
+		/* line 29 */
+		$this->createTemplate('components/breadcrumb.latte', $this->params, "include")->renderToContentType('html');
+?>
         <div class="container-fluid">
           <div class="animated fadeIn">
-            Test
+<?php
+		if (isset($flashMessages)) {
+			$this->renderBlock('flashMessages', ['messages' => $flashMessages] + $this->params, 'html');
+		}
+		$this->renderBlock('content', $this->params, 'html');
+?>
           </div>
 
         </div>
       </main>
     </div>
-    <footer class="app-footer">
-      <div>
-        <span>&copy; 2018 </span><a href="https://deloittedigital.cz">Deloitte Digital</a>        
-      </div>
-    </footer>
-    <!-- Bootstrap and necessary plugins-->
-    <script src="/assets/vendors/jquery/js/jquery.min.js"></script>
-    <script src="/assets/vendors/popper.js/js/popper.min.js"></script>
-    <script src="/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/vendors/pace-progress/js/pace.min.js"></script>
-    <script src="/assets/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
-    <script src="/assets/vendors/@coreui/coreui/js/coreui.min.js"></script>
-    <!-- Plugins and scripts required by this view-->
-    <script src="/assets/vendors/chart.js/js/Chart.min.js"></script>
-    <script src="/assets/vendors/@coreui/coreui-plugin-chartjs-custom-tooltips/js/custom-tooltips.min.js"></script>
-    <script src="/assets/backend/js/main.js"></script>
+<?php
+		/* line 41 */
+		$this->createTemplate('components/footer.latte', $this->params, "include")->renderToContentType('html');
+?>
+    
+<?php
+		/* line 43 */
+		$this->createTemplate('components/assets.latte', $this->params, "include")->renderToContentType('html');
+?>
   </body>
 </html><?php
 		return get_defined_vars();

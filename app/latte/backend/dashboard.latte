@@ -1,3 +1,14 @@
-{layout '@layout.latte'}
-{block content}
+{layout '@layout.latte'} {block content}
+<div class="card">
+    <div class="card-header">
+        Administrace - <strong>SZIF</strong>
+    </div>
+    <div class="card-body">
+        <h2>{$user->fullName}, vítejte v administraci!</h2>
+        <p>Vyberte si prosím v menu, které data chcete editovat.</p>
+        <p>Webovou stránku <a href="http://pojdpomahatzemedelstvi.cz/" target="_blank">http://pojdpomahatzemedelstvi.cz</a>, můžete zobrazit kliknutím na tento odkaz:<br>
+        <a href="http://pojdpomahatzemedelstvi.cz/" class="btn btn-primary mt-4" target="_blank">Přejít na stránku</a>
+        </p>
+    </div>
+</div>
 {/block}

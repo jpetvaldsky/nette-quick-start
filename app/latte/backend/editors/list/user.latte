@@ -1,0 +1,17 @@
+{layout '../../@layout.latte'}
+{includeblock '../../components/moduls/cards/user.latte'}
+
+{block content}
+<h2>Uživatelé</h2>
+
+<div class="row">
+{foreach $data as $item}
+
+    <div class="col-lg-6">
+    {include cardBlock, item => $item}
+    </div>
+{/foreach}
+</div>
+
+
+{/block}

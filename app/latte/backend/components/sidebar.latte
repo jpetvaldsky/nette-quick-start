@@ -1,0 +1,54 @@
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link{if $section == 'homepage'} active{/if}" href="{$basePath}">
+                <i class="nav-icon icon-home"></i> Úvodní strana
+              </a>
+            </li>
+            <li class="nav-title">Správa obsahu</li>
+            <li class="nav-item">
+              <a class="nav-link{if $section == 'positions'} active{/if}" href="{$basePath}/volne-pozice">
+                <i class="nav-icon icon-organization"></i> Volné pozice</a>
+            </li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'hr-team'} active{/if}" href="{$basePath}/hr-team">
+                <i class="nav-icon icon-energy"></i> HR Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link{if $section == 'news'} active{/if}" href="{$basePath}/novinky">
+                <i class="nav-icon icon-notebook"></i> Novinky (Blog)</a>
+            </li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'faq'} active{/if}" href="{$basePath}/faq">
+                <i class="nav-icon icon-question"></i> FAQ</a>
+            </li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'about'} active{/if}" href="{$basePath}/o-szifu">
+                <i class="nav-icon icon-speech"></i> O SZIFu</a>
+            </li>
+            <li class="nav-title" n:if="$superAdmin">Související obsah</li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'position-type'} active{/if}" href="{$basePath}/typy-pozic">
+                <i class="nav-icon icon-layers"></i> Pozice</a>
+            </li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'branches'} active{/if}" href="{$basePath}/pobocky">
+                <i class="nav-icon icon-compass"></i> Pobočky</a>
+            </li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'regions'} active{/if}" href="{$basePath}/kraje">
+                <i class="nav-icon icon-map"></i> Kraje</a>
+            </li>
+            <li class="nav-title" n:if="$superAdmin">Servisní data</li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'media'} active{/if}" href="{$basePath}/media">
+                <i class="nav-icon icon-picture"></i> Média</a>
+            </li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'users'} active{/if}" href="{$basePath}/uzivatele">
+                <i class="nav-icon icon-people"></i> Uživatelé</a>
+            </li>
+          </ul>
+        </nav>
+      </div>

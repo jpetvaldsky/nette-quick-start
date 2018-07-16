@@ -1,0 +1,35 @@
+{layout '../../@layout.latte'}
+{includeblock '../../components/file-uploader.latte'}
+{block content}
+<h2>Média</h2>
+<form action="{$basePath}/{$pathPrefix}/" method="post" class="form-horizontal">
+<div class="card">
+    <div class="card-header">
+        <strong>{ifset $item}Editace, ID: {$item->id}{else}Nový záznam{/ifset}</strong>
+    </div>
+    <div class="card-body">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="title">Název</label>
+                <div class="col-md-9">
+                    <input type="text" id="title" name="title" value="{ifset $item}{$item->title}{/ifset}" class="form-control" placeholder="Zadejte popisek souboru">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="title">Soubor</label>
+                <div class="col-md-9">
+                    <div id="mediaContainer" data-uuid="" class="media-uploader"></div>
+                    <input type="hidden" id="mediaContainerID" name="mediaHash" value="{ifset $item}{$item->mediaHash}{/ifset}">
+                </div>
+            </div>
+        
+    </div>
+    <div class="card-footer text-center">
+        <input type="hidden" name="action" value="{$formAction}">
+        {ifset $item}<input type="hidden" name="id" value="{$item->id}">{/ifset}
+        <button type="submit" class="btn btn-md btn-primary col-sm-12 col-md-4"><i class="fa fa-plus-circle"></i> Uložit</button>
+    </div>
+</div>
+
+
+{include fileUploader, label => 'Nahrát soubor'}
+{/block}

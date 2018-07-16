@@ -35,17 +35,10 @@ class Template02f65abada extends Latte\Runtime\Template
 		$this->renderBlock('content', $this->params, 'html');
 ?>
     
-    <!-- Bootstrap and necessary plugins-->
-    <script src="/assets/vendors/jquery/js/jquery.min.js"></script>
-    <script src="/assets/vendors/popper.js/js/popper.min.js"></script>
-    <script src="/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/vendors/pace-progress/js/pace.min.js"></script>
-    <script src="/assets/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
-    <script src="/assets/vendors/@coreui/coreui/js/coreui.min.js"></script>
-    <!-- Plugins and scripts required by this view-->
-    <script src="/assets/vendors/chart.js/js/Chart.min.js"></script>
-    <script src="/assets/vendors/@coreui/coreui-plugin-chartjs-custom-tooltips/js/custom-tooltips.min.js"></script>
-    <script src="/assets/backend/js/main.js"></script>
+<?php
+		/* line 24 */
+		$this->createTemplate('components/assets.latte', $this->params, "include")->renderToContentType('html');
+?>
   </body>
 </html><?php
 		return get_defined_vars();

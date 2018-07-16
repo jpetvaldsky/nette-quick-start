@@ -1,0 +1,39 @@
+{define cardBlock}
+<div class="card">
+<div class="card-header">
+   <strong>{$item->fullName}</strong> <span class="badge badge-pill badge-primary">ID: {$item->id}</span>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-6">
+            <strong>Uživatelské jméno</strong>
+        </div>
+        <div class="col-6">
+            {$item->username}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <strong>Email</strong>
+        </div>
+        <div class="col-6">
+            {$item->email}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <strong>Role</strong>
+        </div>
+        <div class="col-6">
+            {$item->role}
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <a href="{$basePath}/uzivatele/editovat/{$item->id}" class="btn btn-primary btn-sm btn-block">Editovat</a>
+        </div>
+    </div>
+
+</div>
+</div>
+{/define}

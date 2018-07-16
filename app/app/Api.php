@@ -1,46 +1,38 @@
 <?php
 
-use Model\Applicant;
-use Model\Service;
+use Model\Media;
 use Tracy\Debugger;
 
 class Api {
 
 	private $connection;
 	private $output;
-	private $service;
-	private $applicant;
 	private $media;
 
 	public function __construct($db)
 	{
 		$this->output = array();
 		$this->connection = $db;
-		$this->applicant = new Applicant($db);
-		$this->media = new Media($db);
-		$this->service = new Service($db);
+		
 	}
 
 	public function init($route) {
 		$this->output["route"] = $route;
 		switch ($route[1]){
-			case  "upload-image":
-				$this->handleUploadImage();
+			case  "upload-media":
+				$result = $this->handleUploadFile();
+				if ($result["success"])
+					$this->saveMediaFileToDatabase($result);
 				break;
-			case "upload-image-chunksdone":
-				$result = $this->finishImageUpload();				
-				if ($result["success"]){
-					$filename = $_POST["qqfilename"];
-					$filesize = $_POST["qqtotalfilesize"];
-					$serverPath = '/upload/images/'.$result["uuid"].'/'.$_POST["qqfilename"];
-					$this->output["mediaResult"] = $this->media->saveMediaFile($result["uuid"],$filename,$serverPath,"image",$filesize);
-					
-				}
-				//{"success":true,"uuid":"94013205-b388-4993-82f1-2570ecb2e623","post":{"qquuid":"94013205-b388-4993-82f1-2570ecb2e623","qqfilename":"0.jpeg","qqtotalfilesize":"9302"}
+			case "upload-media-chunksdone":
+				$result = $this->finishUpload();
+				if ($result["success"])
+					$this->saveMediaFileToDatabase($result);
 				break;
 			case "store-media-file":
 				$this->output = $_POST;
-				$this->applicant->saveMediaFile($_POST['applicantID'],$_POST['fieldID'],$_POST['uuid']);
+				//$this->media->checkMediaFile($_POST['uuid'],"image");
+				//$this->applicant->saveMediaFile($_POST['applicantID'],$_POST['fieldID'],$_POST['uuid']);
 				break;
 			case "test-call":
 				$this->output["response"] = "Test works fine...";
@@ -51,24 +43,37 @@ class Api {
 		}
 	}
 
-	public function handleUploadImage() {
+	/* MEDIA UPLOAD */
+
+	private function saveMediaFileToDatabase($result){
+		if ($result["success"]){			
+			$filename = $_POST["qqfilename"];
+			$filesize = $_POST["qqtotalfilesize"];
+			$serverPath = '/upload/'.$result["uuid"].'/'.$_POST["qqfilename"];
+			$this->output["mediaResult"] = Media::saveMediaFile($this->connection,$result["uuid"],$filename,$serverPath,$filesize);
+		}
+	}
+
+	public function handleUploadFile($limitExt=array("jpeg", "jpg", "png", "gif","pdf")) {
 		$uploader = new \UploadHandler();
-		$uploader->allowedExtensions = array("jpeg", "jpg", "png", "gif","pdf");
+		$uploader->allowedExtensions = $limitExt;
 		$uploader->sizeLimit = null;		
 		$uploader->chunksFolder = ROOT_FOLDER . '/upload/chunks';
-		$result = $uploader->handleUpload(ROOT_FOLDER . '/upload/images');
+		$result = $uploader->handleUpload(ROOT_FOLDER . '/upload/');
 		$this->output = $result;
+		$this->output['debugMsg'] = 'Handle upload file...';
 		return $result;	
 	}
 
-	public function finishImageUpload() {
+	public function finishUpload($limitExt=array("jpeg", "jpg", "png", "gif","pdf")) {
 		$uploader = new \UploadHandler();
-		$uploader->allowedExtensions = array();
+		$uploader->allowedExtensions = $limitExt;
 		$uploader->chunksFolder = ROOT_FOLDER . '/upload/chunks';
-		$result = $uploader->combineChunks(ROOT_FOLDER . '/upload/images');
-		$this->output = $result;		
+		$result = $uploader->combineChunks(ROOT_FOLDER . '/upload/');
+		$this->output = $result;
+		$this->output['debugMsg'] = 'Chunks Done.';
 		return $result;
-	}
+	}	
 
 	public function render() {
 		header('Content-Type: application/json');

@@ -1,0 +1,20 @@
+<ol class="breadcrumb">
+    {foreach $pages as $p}
+    <li class="breadcrumb-item active">
+        {if $p['link'] != ''}
+            <a href="{$basePath}"><i class="nav-icon {$p['icon']}"></i> {$p['title']}</a>
+        {else}
+            <i class="nav-icon {$p['icon']}"></i> {$p['title']}
+        {/if}
+    </li>
+    {/foreach}
+    
+    <!-- Breadcrumb Menu-->
+    <li class="breadcrumb-menu d-md-down-none" n:if="$newItem">
+    <div class="btn-group" role="group" aria-label="Button group">
+        <a class="btn" href="{$newItemLink}">
+        <i class="icon-plus"></i> Přidat novou položku
+        </a>              
+    </div>
+    </li>
+</ol>

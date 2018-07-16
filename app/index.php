@@ -10,11 +10,34 @@ require 'config.php';
 require 'app/lib/DatabaseConnection.php';
 require 'app/lib/Helpers.php';
 require 'app/lib/Sessions.php';
+require 'app/lib/UploadHandler.php';
+
 require 'app/Main.php';
 require 'app/Api.php';
 require 'app/Admin.php';
 
+
+require 'app/Admin/DefaultModul.php';
+
+require 'app/Admin/MediaModul.php';
+require 'app/Admin/PositionTypeModul.php';
+require 'app/Admin/RegionModul.php';
+require 'app/Admin/UserModul.php';
+
+
+
+require 'app/Model/Default.php';
+require 'app/Model/Media.php';
+require 'app/Model/PositionType.php';
+require 'app/Model/Region.php';
+require 'app/Model/User.php';
+
+
+
+define("UPLOAD_FOLDER","/upload/");
+define("THUMB_FOLDER","/thumbnails/");
 define("ROOT_FOLDER",__DIR__);
+
 
 
 if (PRODUCTION_MODE) {
@@ -50,3 +73,5 @@ switch ($route[0]) {
 		$app->render();
 		break;
 }
+
+

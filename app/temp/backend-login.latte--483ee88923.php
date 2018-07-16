@@ -36,14 +36,16 @@ class Template483ee88923 extends Latte\Runtime\Template
 
 	function blockContent($_args)
 	{
-?>  
+		extract($_args);
+?>
+  
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card-group">
           <div class="card p-4">
             <div class="card-body">
-              <form method="post">
+              <form action="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 11 */ ?>" method="post">
               <h1>Přihlášení</h1>
               <p class="text-muted">Zadejte prosím své přihlašovací údaje</p>
               <div class="input-group mb-3">
@@ -52,7 +54,7 @@ class Template483ee88923 extends Latte\Runtime\Template
                     <i class="icon-user"></i>
                   </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Uživatelské jméno">
+                <input type="text" class="form-control" name="username" placeholder="Uživatelské jméno">
               </div>
               <div class="input-group mb-4">
                 <div class="input-group-prepend">
@@ -60,14 +62,14 @@ class Template483ee88923 extends Latte\Runtime\Template
                     <i class="icon-lock"></i>
                   </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Heslo">
+                <input type="password" name="password" class="form-control" placeholder="Heslo">
               </div>
               <div class="row">
                 <div class="col-6">
                   <button type="submit" class="btn btn-primary px-4">Přihlásit se</button>
                 </div>
                 <div class="col-6 text-right">
-                  <a href="/backend/heslo" class="btn btn-link px-0">Zapoměli jste heslo?</a>
+                  <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 35 */ ?>/heslo" class="btn btn-link px-0">Zapoměli jste heslo?</a>
                 </div>
               </div>
               </form>

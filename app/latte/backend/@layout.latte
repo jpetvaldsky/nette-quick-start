@@ -1,3 +1,6 @@
+{includeblock 'components/flash-messages.latte'}
+{includeblock 'components/no-entry.latte'}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,80 +23,23 @@
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     {include 'components/header.latte'}
     <div class="app-body">
-      <div class="sidebar">
-        <nav class="sidebar-nav">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">
-                <i class="nav-icon icon-home"></i> Úvodní strana
-              </a>
-            </li>
-            <li class="nav-title">Správa obsahu</li>
-            <li class="nav-item">
-              <a class="nav-link" href="colors.html">
-                <i class="nav-icon icon-organization"></i> Volné pozice</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-energy"></i> HR Team</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-notebook"></i> Novinky (Blog)</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-question"></i> FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="typography.html">
-                <i class="nav-icon icon-speech"></i> O SZIFu</a>
-            </li>
-            <li class="nav-title">Související obsah</li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="nav-icon icon-chemistry"></i> Obor</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="nav-icon icon-map"></i> Kraje</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      {include 'components/sidebar.latte'}
       <main class="main">
         <!-- Breadcrumb-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active"><i class="nav-icon icon-home"></i> Úvodní strana</li>
-          
-          <!-- Breadcrumb Menu-->
-          <li class="breadcrumb-menu d-md-down-none">
-            <div class="btn-group" role="group" aria-label="Button group">
-              <a class="btn" href="#">
-                <i class="icon-plus"></i> Přidat novou položku
-              </a>              
-            </div>
-          </li>
-        </ol>
+        {include 'components/breadcrumb.latte'}
         <div class="container-fluid">
           <div class="animated fadeIn">
-            Test
+            {ifset $flashMessages}
+            {include flashMessages, messages => $flashMessages}
+            {/ifset}
+            {include content}
           </div>
 
         </div>
       </main>
     </div>
     {include 'components/footer.latte'}
-    <!-- Bootstrap and necessary plugins-->
-    <script src="/assets/vendors/jquery/js/jquery.min.js"></script>
-    <script src="/assets/vendors/popper.js/js/popper.min.js"></script>
-    <script src="/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/vendors/pace-progress/js/pace.min.js"></script>
-    <script src="/assets/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
-    <script src="/assets/vendors/@coreui/coreui/js/coreui.min.js"></script>
-    <!-- Plugins and scripts required by this view-->
-    <script src="/assets/vendors/chart.js/js/Chart.min.js"></script>
-    <script src="/assets/vendors/@coreui/coreui-plugin-chartjs-custom-tooltips/js/custom-tooltips.min.js"></script>
-    <script src="/assets/backend/js/main.js"></script>
+    
+    {include 'components/assets.latte'}
   </body>
 </html>

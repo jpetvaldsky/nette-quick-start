@@ -1,0 +1,15 @@
+{define cardBlock}
+<div class="card">
+    <div class="card-header">
+        {if $item->title != ''}{$item->title}{else}<strong>ID:</strong> {$item->id}{/if}
+        <div class="card-header-actions">
+            <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="card-header-action btn-setting"><i class="icon-pencil"></i></a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="text-center">
+            {$item->mediaHash|thumb,150,150}
+        </div>
+    </div>
+</div>
+{/define}

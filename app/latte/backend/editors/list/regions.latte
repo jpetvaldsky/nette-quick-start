@@ -1,0 +1,38 @@
+{layout '../../@layout.latte'}
+
+{block content}
+<h2>Kraje</h2>
+
+{ifset $data}
+<div class="card">
+<table class="table table-striped table-responsive-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Název</th>
+            <th>Ikona Mapy</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {foreach $data as $item}
+        <tr>
+            <td>{$item->id}</td>
+            <td><strong>{$item->title}</strong></td>
+            <td>{$item->mapIcon}</td>
+            <td>{if $item->active == 1}<span class="badge badge-success">Aktivní</span>{else}<span class="badge badge-secondary">Vypnutý</span>{/if}</td>
+            <td>
+                <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="btn btn-primary btn-sm">Editovat</a>
+                {*&nbsp;<a href="{$basePath}/typy-pozic/smazat/{$item->id}" class="btn btn-warning btn-sm">Smazat</a>*}
+            </td>
+        
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
+</div>
+{else}
+    {include noEntry, entryLink => $pathPrefix}
+{/ifset}
+{/block}

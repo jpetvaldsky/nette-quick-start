@@ -8,7 +8,7 @@
         <div class="card-group">
           <div class="card p-4">
             <div class="card-body">
-              <form method="post">
+              <form action="{$basePath}" method="post">
               <h1>Přihlášení</h1>
               <p class="text-muted">Zadejte prosím své přihlašovací údaje</p>
               <div class="input-group mb-3">
@@ -17,7 +17,7 @@
                     <i class="icon-user"></i>
                   </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Uživatelské jméno">
+                <input type="text" class="form-control" name="username" placeholder="Uživatelské jméno">
               </div>
               <div class="input-group mb-4">
                 <div class="input-group-prepend">
@@ -25,14 +25,14 @@
                     <i class="icon-lock"></i>
                   </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Heslo">
+                <input type="password" name="password" class="form-control" placeholder="Heslo">
               </div>
               <div class="row">
                 <div class="col-6">
                   <button type="submit" class="btn btn-primary px-4">Přihlásit se</button>
                 </div>
                 <div class="col-6 text-right">
-                  <a href="/backend/heslo" class="btn btn-link px-0">Zapoměli jste heslo?</a>
+                  <a href="{$basePath}/heslo" class="btn btn-link px-0">Zapoměli jste heslo?</a>
                 </div>
               </div>
               </form>

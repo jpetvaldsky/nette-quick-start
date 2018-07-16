@@ -1,0 +1,19 @@
+{layout '../../@layout.latte'}
+{includeblock '../../components/moduls/cards/thumbnail.latte'}
+
+{block content}
+<h2>Knihovna Medií</h2>
+
+{ifset $data}
+    <div class="row">
+    {foreach $data as $item}
+        <div class="col-sm-6 col-lg-4 col-xl-3">
+        {include cardBlock, item => $item}
+        </div>
+    {/foreach}
+    </div>
+{else}
+    {include noEntry, entryLink => $pathPrefix}
+{/ifset}
+
+{/block}
