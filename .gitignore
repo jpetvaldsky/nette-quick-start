@@ -1,2 +1,4 @@
 db/
+app/upload/
+app/thumbnail/
 szif-nette-app.code-workspace
