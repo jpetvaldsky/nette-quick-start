@@ -87,14 +87,17 @@ class Media extends DefaultModel {
 	}
 	
 	public static function delete($db,$id) {
-		$mediaFile = Media::getByHash($db,$hash);
+		$mediaFile = Media::getByID($db,$id);
+		Debugger::barDump($mediaFile);
 		if ($mediaFile != null) {
+			Debugger::barDump(file_exists(ROOT_FOLDER.$mediaFile["serverPath"]));
 			if (file_exists(ROOT_FOLDER.$mediaFile["serverPath"])) {
+				Debugger::barDump(is_file(ROOT_FOLDER.$mediaFile["serverPath"]));
 				if (is_file(ROOT_FOLDER.$mediaFile["serverPath"])) {
 					Debugger::barDump("Smazat",ROOT_FOLDER.$mediaFile["serverPath"]);
 				}
 			}
 		}
-		parent::delete($db,$id);
+		//parent::delete($db,$id);
 	}
 }

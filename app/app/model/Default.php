@@ -51,6 +51,14 @@ class DefaultModel {
             return true;		
         }
         return false;
+	}
+	
+	public static function getByID($db,$id) {
+        $res = $db->query('SELECT * FROM %n WHERE [id] = %i',static::$table,$id);
+		if (count($res) > 0) {
+            return $res->fetch();		
+        }
+        return null;
     }
 
 	public static function getList($db) 

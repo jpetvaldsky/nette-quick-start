@@ -43,10 +43,11 @@ class MediaModul extends DefaultModul {
                 if (count($route)> 2) {
                     if (Media::check($this->connection,$route[3])) {
                         Media::delete($this->connection,$route[3]);
-                        array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Záznam byl smazan.'));
+                        array_push($this->pageData["flashes"],array('type' => 'success', 'style' => 'success', 'text' => 'Záznam byl smazan.'));
+                    } else {
+                        array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Požadovaný záznam nebyl nalezen'));
                     }
-                }
-                array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Požadovaný záznam nebyl nalezen'));
+                }                
                 break;
         }
     }
