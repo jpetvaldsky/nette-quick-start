@@ -45,7 +45,7 @@ class Template69c339d3d9 extends Latte\Runtime\Template
     </div>
     <div class="card-body">
         <div class="text-center">
-            <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->thumb, $item->mediaHash, 150, 150)) /* line 11 */ ?>
+            <?php echo call_user_func($this->filters->thumb, $item->mediaHash, 200, 0) /* line 11 */ ?>
 
         </div>
     </div>

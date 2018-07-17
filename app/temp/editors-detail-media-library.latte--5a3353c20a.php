@@ -65,12 +65,18 @@ class Template5a3353c20a extends Latte\Runtime\Template
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="title">Soubor</label>
+                <label class="col-md-3 col-form-label" for="title">Soubor</label>                
                 <div class="col-md-9">
+                    <?php
+		if (isset($item)) {
+			?><div class="mb-3"><?php echo call_user_func($this->filters->thumb, $item->mediaHash, 250, 0) /* line 20 */ ?></div><?php
+		}
+?>
+
                     <div id="mediaContainer" data-uuid="" class="media-uploader"></div>
                     <input type="hidden" id="mediaContainerID" name="mediaHash" value="<?php
 		if (isset($item)) {
-			echo LR\Filters::escapeHtmlAttr($item->mediaHash) /* line 21 */;
+			echo LR\Filters::escapeHtmlAttr($item->mediaHash) /* line 22 */;
 		}
 ?>">
                 </div>
@@ -78,10 +84,10 @@ class Template5a3353c20a extends Latte\Runtime\Template
         
     </div>
     <div class="card-footer text-center">
-        <input type="hidden" name="action" value="<?php echo LR\Filters::escapeHtmlAttr($formAction) /* line 27 */ ?>">
+        <input type="hidden" name="action" value="<?php echo LR\Filters::escapeHtmlAttr($formAction) /* line 28 */ ?>">
         <?php
 		if (isset($item)) {
-			?><input type="hidden" name="id" value="<?php echo LR\Filters::escapeHtmlAttr($item->id) /* line 28 */ ?>"><?php
+			?><input type="hidden" name="id" value="<?php echo LR\Filters::escapeHtmlAttr($item->id) /* line 29 */ ?>"><?php
 		}
 ?>
 
