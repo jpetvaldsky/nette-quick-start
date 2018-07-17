@@ -84,6 +84,17 @@ class Media extends DefaultModel {
         $values['modifyDate%sql'] = 'NOW()';
         $res = $db->query("UPDATE %n SET %a WHERE [id]=%i",static::$table,$values,$id);
 		return true;
-    }
-
+	}
+	
+	public static function delete($db,$id) {
+		$mediaFile = Media::getByHash($db,$hash);
+		if ($mediaFile != null) {
+			if (file_exists(ROOT_FOLDER.$mediaFile["serverPath"])) {
+				if (is_file(ROOT_FOLDER.$mediaFile["serverPath"])) {
+					Debugger::barDump("Smazat",ROOT_FOLDER.$mediaFile["serverPath"]);
+				}
+			}
+		}
+		parent::delete($db,$id);
+	}
 }

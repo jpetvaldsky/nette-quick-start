@@ -64,5 +64,11 @@ class DefaultModel {
 
     public static function delete($db,$id) 
     {	
+		$res = $db->query('SELECT * FROM %n WHERE [id] = %i',static::$table,$id);
+		if (count($res) > 0) {
+			$del = $db->query('DELETE FROM %n WHERE [id] = %i',static::$table,$id);
+			return true;
+		}
+		return  null;
     }
 }

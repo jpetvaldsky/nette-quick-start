@@ -38,7 +38,15 @@ class MediaModul extends DefaultModul {
                 } else {
                     array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Požadovaný záznam nebyl nalezen'));
                 }
-
+                break;
+            case "smazat":
+                if (count($route)> 2) {
+                    if (Media::check($this->connection,$route[3])) {
+                        Media::delete($this->connection,$route[3]);
+                        array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Záznam byl smazan.'));
+                    }
+                }
+                array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Požadovaný záznam nebyl nalezen'));
                 break;
         }
     }
