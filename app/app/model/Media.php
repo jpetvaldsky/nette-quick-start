@@ -77,7 +77,7 @@ class Media extends DefaultModel {
 			$output = ROOT_FOLDER.$filename;
 			if (!file_exists($output)) {
 				$image = Image::fromFile(ROOT_FOLDER.$mediaFile["serverPath"]);
-				$image->resize($width, $height);
+				$image->resize($width, $height,Image::FIT | Image::SHRINK_ONLY);
 				$image->save($output, 90, $imageType);
 			}
 			return $filename;

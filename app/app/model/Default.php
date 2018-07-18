@@ -68,7 +68,7 @@ class DefaultModel {
 			return $res->fetchAll();
 		}
 		return  null;
-    }
+	}
 
     public static function delete($db,$id) 
     {	

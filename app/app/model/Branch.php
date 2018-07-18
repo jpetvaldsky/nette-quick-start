@@ -25,6 +25,9 @@ class Branch extends DefaultModel {
         if (key_exists('active',$formData)) {
             if ($formData['active'] == 1) $active = 1;
         }
+        $photoID = null;
+        $photoID = ($formData["photo"] == '') ? null:$formData["photo"];
+        
         $values = array(
             'title%s' => $formData["title"],
             'address%s' => $formData["address"],
@@ -32,7 +35,7 @@ class Branch extends DefaultModel {
             'region%i' => ($formData["region"] == '') ? null:$formData["region"],
             'phoneNumber%s' => $formData["phoneNumber"],
             'email%s' => $formData["email"],
-            'photo%i' => ($formData["photo"] == '') ? null:$formData["photo"],
+            'photo%i' => $photoID,
             'createDate%sql' => 'NOW()',
             'active%i' => $active
         );
@@ -46,6 +49,10 @@ class Branch extends DefaultModel {
         if (key_exists('active',$formData)) {
             if ($formData['active'] == 1) $active = 1;
         }
+
+        $photoID = null;
+        $photoID = ($formData["photo"] == '') ? null:$formData["photo"];
+
         $values = array(
             'title%s' => $formData["title"],
             'address%s' => $formData["address"],
@@ -53,7 +60,7 @@ class Branch extends DefaultModel {
             'region%i' => ($formData["region"] == '') ? null:$formData["region"],
             'phoneNumber%s' => $formData["phoneNumber"],
             'email%s' => $formData["email"],
-            'photo%i' => ($formData["photo"] == '') ? null:$formData["photo"],
+            'photo%i' => $photoID,
             'modifyDate%sql' => 'NOW()',
             'active%i' => $active
         );

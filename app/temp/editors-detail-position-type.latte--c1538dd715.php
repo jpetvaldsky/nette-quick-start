@@ -54,7 +54,7 @@ class Templatec1538dd715 extends Latte\Runtime\Template
 		$this->renderBlock('textInput', ['id'=>'title','title'=>'Název','placeholder'=>'Zadejte název pozice','value' => isset($item)? $item->title: ''] + $this->params, 'html');
 		$this->renderBlock('textInput', ['id'=>'abbreviation','title'=>'Zkratka','placeholder'=>'Zkratka názvu pozice','value' => isset($item)? $item->abbreviation: ''] + $this->params, 'html');
 ?>
-                        
+
 <?php
 		$this->renderBlock('activeCheckbox', $this->params, 'html');
 ?>

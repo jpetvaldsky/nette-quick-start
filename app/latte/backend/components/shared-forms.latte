@@ -7,6 +7,23 @@
             </div>
 {/define}
 
+{define #relatedContent}
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="{$id}">{$title}</label>
+                <div class="col-md-9">                
+                    {ifset $photoPreview}
+                        {if $value != ''}
+                            <div class="mb-3">{$value|getAttr,"Model\Media","mediaHash"|thumb,250,0|noescape}</div>
+                        {/if}
+                    {/ifset}
+                    <select id="{$id}" name="{$id}" class="form-control">
+                        <option value="">{$defaultOption}</option>
+                        {$model|relatedContent,$value|noescape}
+                    </select>                    
+                </div>
+            </div>
+{/define}
+
 {define #mediaUpload}
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="title">Soubor</label>

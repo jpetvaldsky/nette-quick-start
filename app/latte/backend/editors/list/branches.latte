@@ -23,7 +23,10 @@
         <tr>
             <td>{$item->id}</td>
             <td><strong>{$item->title}</strong></td>
-            <td>{$item->mapClass}</td>
+            <td>{$item->address} / {$item->city}</td>
+            <td>{$item->region|getAttr,"Model\Region","title"}</td>
+            <td>{$item->phoneNumber}</td>
+            <td>{$item->email}</td>
             <td>{if $item->active == 1}<span class="badge badge-success">Aktivní</span>{else}<span class="badge badge-secondary">Vypnutý</span>{/if}</td>
             <td>
                 <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="btn btn-primary btn-sm">Editovat</a>

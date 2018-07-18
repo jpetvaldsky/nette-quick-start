@@ -62,16 +62,9 @@ class Template5a3353c20a extends Latte\Runtime\Template
 ?>
         
     </div>
-    <div class="card-footer text-center">
-        <input type="hidden" name="action" value="<?php echo LR\Filters::escapeHtmlAttr($formAction) /* line 17 */ ?>">
-        <?php
-		if (isset($item)) {
-			?><input type="hidden" name="id" value="<?php echo LR\Filters::escapeHtmlAttr($item->id) /* line 18 */ ?>"><?php
-		}
+<?php
+		$this->renderBlock('formSubmit', $this->params, 'html');
 ?>
-
-        <button type="submit" class="btn btn-md btn-primary col-sm-12 col-md-4"><i class="fa fa-plus-circle"></i> Uložit</button>
-    </div>
 </div>
 
 <?php

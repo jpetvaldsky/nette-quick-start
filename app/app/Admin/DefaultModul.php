@@ -49,7 +49,60 @@ class DefaultModul {
     }
 
     protected function parseAction($route) {
+        if (isset($_POST)) {
+            $this->processFormData($_POST,$route);
+        }
+        if (count($route) == 2) $route[2] = "";
+        switch ($route[2]) {
+            case "novy-zaznam":
+                $this->pageData["formAction"] = "create";
+                $this->template = "editors/detail/".$this->prefix;
+                break;
+            case "editovat":
+                $itemData = null;
+                if (count($route)> 2) {
+                    $checkResult = call_user_func(array($this->modelClass,'check'),$this->connection,$route[3]);
+                    if ($checkResult){
+                        $itemData = new $this->modelClass($this->connection,$route[3]);
+                    }
+                }
+                if ($itemData) {
+                    $this->pageData["item"] = $itemData;
+                    $this->pageData["formAction"] = "edit";
+                    $this->template = "editors/detail/".$this->prefix;
+                } else {
+                    array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Požadovaný záznam nebyl nalezen'));
+                }                
+                break;
+            case "smazat":
+                /*if (count($route)> 2) {
+                    if (Media::check($this->connection,$route[3])) {
+                        Media::delete($this->connection,$route[3]);
+                        array_push($this->pageData["flashes"],array('type' => 'success', 'style' => 'success', 'text' => 'Záznam byl smazan.'));
+                    } else {
+                        array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Požadovaný záznam nebyl nalezen'));
+                    }
+                }*/
+                break;
+        }
+    }
 
+    protected function processFormData($data,&$route) {
+        if (key_exists("action",$data)) {
+            if ($data["action"] == "create") {                
+                $insResult = call_user_func(array($this->modelClass,'create'),$this->connection,$data);
+                array_push($this->pageData["flashes"],array('type' => 'success', 'style' => 'success', 'text' => 'Nový záznam byl vytvořen v pořádku.'));
+            }
+
+            if ($data["action"] == "edit") {
+                $checkResult = call_user_func(array($this->modelClass,'check'),$this->connection,$data["id"]);
+                if ($checkResult) {
+                    $insResult = call_user_func(array($this->modelClass,'update'),$this->connection,$data);
+                    array_push($this->pageData["flashes"],array('type' => 'success', 'style' => 'success', 'text' => 'Záznam byl editován v pořádku.'));
+                }
+                
+            }
+        }
     }
 
     

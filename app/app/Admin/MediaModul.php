@@ -14,45 +14,7 @@ class MediaModul extends DefaultModul {
     protected $pageTitle = "Média";
     
 
-    protected function parseAction($route) {
-        if (isset($_POST)) {
-            $this->processFormData($_POST,$route);
-        }
-        if (count($route) == 2) $route[2] = "";
-        switch ($route[2]) {
-            case "novy-zaznam":
-                $this->pageData["formAction"] = "create";
-                $this->template = "editors/detail/".$this->prefix;
-                break;
-            case "editovat":
-                $itemData = null;
-                if (count($route)> 2) {
-                    if (Media::check($this->connection,$route[3])) {
-                        $itemData = new Media($this->connection,$route[3]);
-                    }
-                }
-                if ($itemData) {
-                    $this->pageData["item"] = $itemData;
-                    $this->pageData["formAction"] = "edit";
-                    $this->template = "editors/detail/".$this->prefix;
-                } else {
-                    array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Požadovaný záznam nebyl nalezen'));
-                }
-                break;
-            case "smazat":
-                if (count($route)> 2) {
-                    if (Media::check($this->connection,$route[3])) {
-                        Media::delete($this->connection,$route[3]);
-                        array_push($this->pageData["flashes"],array('type' => 'success', 'style' => 'success', 'text' => 'Záznam byl smazan.'));
-                    } else {
-                        array_push($this->pageData["flashes"],array('type' => 'error', 'style' => 'danger', 'text' => 'Požadovaný záznam nebyl nalezen'));
-                    }
-                }                
-                break;
-        }
-    }
-
-    private function processFormData($data,&$route) {
+    protected function processFormData($data,&$route) {
         if (key_exists("action",$data)) {
             if ($data["action"] == "create" || $data["action"] == "edit") {
                 if ($_POST['mediaHash'] != ''){

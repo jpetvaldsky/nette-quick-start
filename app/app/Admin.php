@@ -7,6 +7,9 @@ use Admin\PositionTypeModul;
 use Admin\RegionModul;
 use Admin\UserModul;
 
+use Model\Branch;
+use Model\PositionType;
+use Model\Region;
 use Model\User;
 use Model\Media;
 
@@ -32,13 +35,7 @@ class Admin 	{
 		$this->latte = new Latte\Engine;
 		$this->latte->setTempDirectory(ROOT_FOLDER.'/temp');
 
-		$this->latte->addFilter('thumb', function($hash,$width=0,$height=0){			
-			$file = Media::thumbnail($this->connection,$hash,$width,$height);
-			if ($file != null) {
-				return '<img src="'.$file.'" >';
-			}
-			return '-- error --';
-		});
+		$this->registerFilters();
 
 
 		$this->password = "845fd556c7b6248462317a5cfd70558b383083ab";//"EiQh3ef6yY";
@@ -153,5 +150,44 @@ class Admin 	{
 			$this->pageData['flashMessages'] = $this->pageData['flashes'];
 		}
 		$this->latte->render('latte/backend/'.$this->template.'.latte', $this->pageData);
+	}
+
+	/* FILTERS */
+	private function registerFilters() {
+		//THUMBNAIL
+		$this->latte->addFilter('thumb', function($hash,$width=0,$height=0){			
+			$file = Media::thumbnail($this->connection,$hash,$width,$height);
+			if ($file != null) {
+				return '<img src="'.$file.'" >';
+			}
+			return '-- error --';
+		});
+
+		//RELATED CONTENT
+		$this->latte->addFilter('relatedContent', function($model,$selected=null){			
+			$data = call_user_func(array($model,'getList'),$this->connection);
+			Debugger::barDump($data);
+			if (count($data) > 0) {
+				$output = '';
+				foreach ($data as $item) {
+					if ($item["id"] == $selected) {
+						$output .= '<option selected="selected" value="'.$item["id"].'">'.$item["title"].'</option>';
+					} else {
+						$output .= '<option value="'.$item["id"].'">'.$item["title"].'</option>';
+					}
+				}
+				return $output;
+			}
+			return null;
+		});
+
+		//GET OBJECT ATTRIBUTE
+		$this->latte->addFilter('getAttr', function($id,$model,$attribute="title") {
+			$data = call_user_func(array($model,'getByID'),$this->connection,$id);
+			if (key_exists($attribute,$data)) {
+				return $data[$attribute];
+			}
+			return $id;
+		});
 	}
 }
