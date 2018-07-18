@@ -73,10 +73,9 @@ class Template87d4446b19 extends Latte\Runtime\Template
 				}
 ?></td>
             <td>
-                <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 26 */ ?>/<?php
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 26 */ ?>/editovat/<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($item->id)) /* line 26 */ ?>" class="btn btn-primary btn-sm">Editovat</a>
-                &nbsp;<a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 27 */ ?>/<?php
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 27 */ ?>/smazat/<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($item->id)) /* line 27 */ ?>" class="btn btn-warning btn-sm" onclick="return confirm('Opravdu smazat?')">Smazat</a>
+<?php
+				$this->renderBlock('tableButtons', ['item'=>$item] + $this->params, 'html');
+?>
             </td>
         
         </tr>

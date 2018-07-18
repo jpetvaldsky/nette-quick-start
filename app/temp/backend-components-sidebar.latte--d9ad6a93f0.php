@@ -43,16 +43,6 @@ class Templated9ad6a93f0 extends Latte\Runtime\Template
             </li>
 <?php
 		}
-?>
-            <li class="nav-item">
-              <a class="nav-link<?php
-		if ($section == 'news') {
-			?> active<?php
-		}
-		?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 19 */ ?>/novinky">
-                <i class="nav-icon icon-notebook"></i> Novinky (Blog)</a>
-            </li>
-<?php
 		if ($superAdmin) {
 ?>            <li class="nav-item">
               <a class="nav-link<?php

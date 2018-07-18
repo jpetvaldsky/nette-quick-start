@@ -39,15 +39,14 @@ class Template69c339d3d9 extends Latte\Runtime\Template
 ?>
 
         <div class="card-header-actions">
-            <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 6 */ ?>/<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 6 */ ?>/editovat/<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($item->id)) /* line 6 */ ?>" class="card-header-action btn-setting"><i class="icon-pencil"></i></a>
-            <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 7 */ ?>/<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 7 */ ?>/smazat/<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($item->id)) /* line 7 */ ?>" onclick="return confirm('Opravdu smazat?')" class="card-header-action btn-setting"><i class="icon-trash"></i></a>
+<?php
+		$this->renderBlock('actionButtons', ['item'=>$item] + $this->params, 'html');
+?>
         </div>
     </div>
     <div class="card-body">
         <div class="text-center">
-            <?php echo call_user_func($this->filters->thumb, $item->mediaHash, 200, 0) /* line 12 */ ?>
+            <?php echo call_user_func($this->filters->thumb, $item->mediaHash, 200, 0) /* line 11 */ ?>
 
         </div>
     </div>

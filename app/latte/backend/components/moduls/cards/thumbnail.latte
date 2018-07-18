@@ -3,8 +3,7 @@
     <div class="card-header">
         {if $item->title != ''}{$item->title}{else}<strong>ID:</strong> {$item->id}{/if}
         <div class="card-header-actions">
-            <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="card-header-action btn-setting"><i class="icon-pencil"></i></a>
-            <a href="{$basePath}/{$pathPrefix}/smazat/{$item->id}" onclick="return confirm('Opravdu smazat?')" class="card-header-action btn-setting"><i class="icon-trash"></i></a>
+            {include #actionButtons, item=>$item}
         </div>
     </div>
     <div class="card-body">

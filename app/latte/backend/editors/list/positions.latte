@@ -9,8 +9,13 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Název</th>
-            <th>Ikona Mapy</th>
+            <th>Nadpis</th>
+            <th>Podnadpis</th>
+            <th>Obor</th>
+            <th>Pobočka</th>
+            <th>Plat</th>
+            <th>Datum zveřejnění</th>
+            <th>Datum expirace</th>
             <th>Status</th>
             <th></th>
         </tr>
@@ -19,8 +24,13 @@
     {foreach $data as $item}
         <tr>
             <td>{$item->id}</td>
-            <td><strong>{$item->title}</strong></td>
-            <td>{$item->mapClass}</td>
+            <td><strong>{$item->title|truncate,30,'…'}</strong></td>
+            <td>{$item->subtitle|truncate,30,'…'}</td>
+            <td>{$item->field|getAttr,"Model\Region","title"}</td>
+            <td>{$item->branch|getAttr,"Model\Branch","title"}</td>
+            <td>{$item->salary|truncate,30,'…'}</td>
+            <td>{$item->publishDate|date:'j. n. Y'}</td>
+            <td>{$item->expireDate|date:'j. n. Y'}</td>
             <td>{if $item->active == 1}<span class="badge badge-success">Aktivní</span>{else}<span class="badge badge-secondary">Vypnutý</span>{/if}</td>
             <td>
                 {include #tableButtons, item=>$item}
@@ -34,4 +44,8 @@
 {else}
     {include noEntry, entryLink => $pathPrefix}
 {/ifset}
+
+</div>
+
+
 {/block}

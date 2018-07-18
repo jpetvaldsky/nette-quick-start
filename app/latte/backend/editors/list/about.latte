@@ -1,5 +1,4 @@
 {layout '../../@layout.latte'}
-{includeblock '../../components/moduls/cards/user.latte'}
 
 {block content}
 <h2>{$headline}</h2>
@@ -13,8 +12,7 @@
             <div class="card-header">
             <strong>{$item->headline}</strong> <span class="badge badge-pill badge-primary">ID: {$item->id}</span>
                 <div class="card-header-actions">
-                    <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="btn btn-primary btn-sm">Editovat</a>
-                    &nbsp;<a href="{$basePath}/{$pathPrefix}/smazat/{$item->id}" class="btn btn-warning btn-sm" onclick="return confirm('Opravdu smazat?')">Smazat</a>
+                    {include #actionButtons, item=>$item}
             </div>
             </div>
             <div class="card-body">

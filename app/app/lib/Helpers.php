@@ -200,7 +200,6 @@ class Helpers
     );
 
     
-	
 	public static function appendDataToArray($array,$data) {
 		if (is_array($array)) {
 			foreach ($data as $key => $value) {

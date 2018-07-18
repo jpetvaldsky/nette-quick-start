@@ -19,6 +19,8 @@ class User extends DefaultModel {
 		$res = $db->query('SELECT * FROM %n WHERE [username] = %s',static::$table,$u);
 		if (count($res) > 0) {
 			$userData = $res->fetch();
+			Debugger::barDump($userData);
+			Debugger::barDump(password_verify($p,$userData['password']));
 			if (password_verify($p,$userData['password']) && $userData["active"] == 1) {
 				return $userData;
 			}

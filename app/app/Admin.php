@@ -7,6 +7,7 @@ use Admin\FaqModul;
 use Admin\FieldModul;
 use Admin\HRTeamModul;
 use Admin\MediaModul;
+use Admin\PositionModul;
 use Admin\PositionTypeModul;
 use Admin\RegionModul;
 use Admin\UserModul;
@@ -17,6 +18,7 @@ use Model\Branch;
 use Model\Faq;
 use Model\Field;
 use Model\HRTeam;
+use Model\Position;
 use Model\PositionType;
 use Model\Region;
 use Model\User;
@@ -88,7 +90,10 @@ class Admin 	{
 		if (count($route) > 1) {
 			switch ($route[1]) {
 				case "volne-pozice":
-					break;				
+					$this->pageData['section'] = 'positions';
+					$this->editor = new PositionModul($this->connection);
+					$this->editor->init($this->template,$this->pageData,$route);
+					break;
 				case "odhlasit-se":
 					$this->session->destroy();
 					$this->template = "login";
@@ -96,7 +101,7 @@ class Admin 	{
 			}
 			
 			if ($this->user->role == "superadmin") {
-				switch ($route[1]) {
+				switch ($route[1]) {					
 					case "hr-team":
 						$this->pageData['section'] = 'hr-team';
 						$this->editor = new HRTeamModul($this->connection);
@@ -156,7 +161,9 @@ class Admin 	{
 	private function authorizedUser(){
 		if (isset($_POST)){
 			if (key_exists('username',$_POST) && key_exists('password',$_POST)) {
+				
 				$userData = User::authorize($this->connection,$_POST['username'],$_POST['password']);				
+				Debugger::barDump($userData);
 				if ($userData != null){
 					$this->user = new User($this->connection,$userData["id"]);
 					$this->sessionInit();
@@ -204,10 +211,14 @@ class Admin 	{
 			if (count($data) > 0) {
 				$output = '';
 				foreach ($data as $item) {
+					$titleValue = '';
+					if (key_exists('title',$item)) $titleValue = $item['title'];
+					if (key_exists('fullName',$item)) $titleValue = $item['fullName'];
+
 					if ($item["id"] == $selected) {
-						$output .= '<option selected="selected" value="'.$item["id"].'">'.$item["title"].'</option>';
+						$output .= '<option selected="selected" value="'.$item["id"].'">'.$titleValue.'</option>';
 					} else {
-						$output .= '<option value="'.$item["id"].'">'.$item["title"].'</option>';
+						$output .= '<option value="'.$item["id"].'">'.$titleValue.'</option>';
 					}
 				}
 				return $output;

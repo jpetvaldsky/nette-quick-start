@@ -16,6 +16,40 @@
             </div>
 {/define}
 
+{define #fieldCheckbox}
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">{$title}</label>
+                <div class="col-md-9 col-form-label">
+                    <div class="form-check checkbox">
+                        {ifset $value}
+                            {if $value == 1}
+                            <input class="form-check-input" type="checkbox" name="{$id}" value="1" checked id="{$id}">
+                            {else}
+                            <input class="form-check-input" type="checkbox" name="{$id}" value="1" id="{$id}">
+                            {/if}
+                        {else}
+                            <input class="form-check-input" type="checkbox" name="{$id}" value="1" checked id="{$id}">
+                        {/ifset}
+                        
+                        <label class="form-check-label" for="{$id}">
+                            Vybrat
+                        </label>
+                    </div>
+                </div>
+            </div>
+{/define}
+
+{define #actionButtons}
+    <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="card-header-action btn-setting"><i class="icon-pencil"></i></a>
+    {*<a href="{$basePath}/{$pathPrefix}/smazat/{$item->id}" onclick="return confirm('Opravdu smazat?')" class="card-header-action btn-setting"><i class="icon-trash"></i></a>*}
+{/define}
+
+{define #tableButtons}
+    <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="btn btn-primary btn-sm">Editovat</a>
+    {*&nbsp;<a href="{$basePath}/{$pathPrefix}/smazat/{$item->id}" class="btn btn-warning btn-sm" onclick="return confirm('Opravdu smazat?')">Smazat</a>*}
+{/define}
+
+
 {define #relatedContent}
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="{$id}">{$title}</label>

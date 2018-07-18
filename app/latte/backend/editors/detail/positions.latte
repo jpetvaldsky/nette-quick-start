@@ -1,0 +1,39 @@
+{layout '../../@layout.latte'}
+{block content}
+<h2>{$headline}</h2>
+<form action="{$basePath}/{$pathPrefix}/" method="post" class="form-horizontal">
+<div class="card">
+    <div class="card-header">
+        <strong>{ifset $item}Editace, ID: {$item->id}{else}Nový záznam{/ifset}</strong>
+    </div>
+    <div class="card-body">
+            {include #textInput, id=>'title',title=>'Nadpis',placeholder=>'Zadejte název pozice',value => isset($item)? $item->title: '' }
+            {include #textInput, id=>'subtitle',title=>'Podnadpis',placeholder=>'Zadejte oficiální název pozice',value => isset($item)? $item->subtitle: '' }
+            
+            {include #relatedContent, id=>'field',model=>'Model\Field',title=>'Obor',defaultOption=>'Vyberte prosím obor',value=> isset($item)? $item->field: ''}
+
+            {include #relatedContent, id=>'branch',model=>'Model\Branch',title=>'Pobočka',defaultOption=>'Vyberte prosím pobočku',value=> isset($item)? $item->branch: ''}
+
+            {include #textInput, id=>'publishDate',title=>'Datum zveřejnění',placeholder=>'DD.MM.RRRR',value => isset($item)? ($item->publishDate|date:'j. n. Y'): '' }
+            {include #textInput, id=>'expireDate',title=>'Datum expirace',placeholder=>'DD.MM.RRRR',value => isset($item)? ($item->expireDate|date:'j. n. Y'): '' }
+            {include #fieldCheckbox, id=>'hideOnExpire',title=>'Skrýt po expirace',value => isset($item)? $item->hideOnExpire: ''}
+
+            {include #relatedContent, id=>'type',model=>'Model\PositionType',title=>'Typ pracovní pozice',defaultOption=>'Vyberte prosím',value=> isset($item)? $item->type: ''}
+            {include #textInput, id=>'salary',title=>'Plat',placeholder=>'Zadejte plat',value => isset($item)? $item->salary: '' }
+
+            {include #textArea, id=>'content',title=>'Popis',placeholder=>'Popis pozice ...',value => isset($item)? $item->content: '', rows => 6 }
+            {include #textArea, id=>'requirements',title=>'Požadavky',placeholder=>'Požadavky na uchazeče ...',value => isset($item)? $item->requirements: '', rows => 4 }
+
+            {include #relatedContent, id=>'hrPersona',model=>'Model\HRTeam',title=>'HR Reprezentant',defaultOption=>'Vyberte prosím HR reprezentanta',value=> isset($item)? $item->hrPersona: ''}
+            {include #fieldCheckbox, id=>'hrRandom',title=>'Vybrat HR náhodně',value => isset($item)? $item->hrRandom: ''}
+
+            
+            {include #textInput, id=>'positionURL',title=>'Odkaz na SZIF',placeholder=>'',value => isset($item)? $item->positionURL: '' }
+
+            {include #activeCheckbox}
+        
+    </div>
+    {include #formSubmit}
+</div>
+</form>
+{/block}

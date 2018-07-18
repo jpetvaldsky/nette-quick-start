@@ -15,10 +15,10 @@
               <a class="nav-link{if $section == 'hr-team'} active{/if}" href="{$basePath}/hr-team">
                 <i class="nav-icon icon-energy"></i> HR Team</a>
             </li>
-            <li class="nav-item">
+            {*<li class="nav-item">
               <a class="nav-link{if $section == 'news'} active{/if}" href="{$basePath}/novinky">
                 <i class="nav-icon icon-notebook"></i> Novinky (Blog)</a>
-            </li>
+            </li>*}
             <li class="nav-item" n:if="$superAdmin">
               <a class="nav-link{if $section == 'faq'} active{/if}" href="{$basePath}/faq">
                 <i class="nav-icon icon-question"></i> FAQ</a>
