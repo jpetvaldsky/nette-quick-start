@@ -76,7 +76,29 @@ class Templated9ad6a93f0 extends Latte\Runtime\Template
 <?php
 		}
 		if ($superAdmin) {
+?>            <li class="nav-item">
+              <a class="nav-link<?php
+			if ($section == 'benefit') {
+				?> active<?php
+			}
+			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 31 */ ?>/benefity">
+                <i class="nav-icon icon-present"></i> Benefity</a>
+            </li>
+<?php
+		}
+		if ($superAdmin) {
 ?>            <li class="nav-title">Související obsah</li>
+<?php
+		}
+		if ($superAdmin) {
+?>            <li class="nav-item">
+              <a class="nav-link<?php
+			if ($section == 'fields') {
+				?> active<?php
+			}
+			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 36 */ ?>/obory">
+                <i class="nav-icon icon-chemistry"></i> Obory</a>
+            </li>
 <?php
 		}
 		if ($superAdmin) {
@@ -85,7 +107,7 @@ class Templated9ad6a93f0 extends Latte\Runtime\Template
 			if ($section == 'position-type') {
 				?> active<?php
 			}
-			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 32 */ ?>/typy-pozic">
+			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 40 */ ?>/typy-pozic">
                 <i class="nav-icon icon-layers"></i> Pozice</a>
             </li>
 <?php
@@ -96,7 +118,7 @@ class Templated9ad6a93f0 extends Latte\Runtime\Template
 			if ($section == 'branches') {
 				?> active<?php
 			}
-			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 36 */ ?>/pobocky">
+			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 44 */ ?>/pobocky">
                 <i class="nav-icon icon-compass"></i> Pobočky</a>
             </li>
 <?php
@@ -107,7 +129,7 @@ class Templated9ad6a93f0 extends Latte\Runtime\Template
 			if ($section == 'regions') {
 				?> active<?php
 			}
-			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 40 */ ?>/kraje">
+			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 48 */ ?>/kraje">
                 <i class="nav-icon icon-map"></i> Kraje</a>
             </li>
 <?php
@@ -122,7 +144,7 @@ class Templated9ad6a93f0 extends Latte\Runtime\Template
 			if ($section == 'media') {
 				?> active<?php
 			}
-			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 45 */ ?>/media">
+			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 53 */ ?>/media">
                 <i class="nav-icon icon-picture"></i> Média</a>
             </li>
 <?php
@@ -133,7 +155,7 @@ class Templated9ad6a93f0 extends Latte\Runtime\Template
 			if ($section == 'users') {
 				?> active<?php
 			}
-			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 49 */ ?>/uzivatele">
+			?>" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 57 */ ?>/uzivatele">
                 <i class="nav-icon icon-people"></i> Uživatelé</a>
             </li>
 <?php

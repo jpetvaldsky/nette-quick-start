@@ -4,16 +4,15 @@ namespace Model;
 use Nette\Utils\Strings;
 use Tracy\Debugger;
 
-class AboutSzif extends DefaultModel {
+class Field extends DefaultModel {
 
-    protected $headline;
-    protected $content;
-    protected $icon;
+    protected $title;
+    protected $optionalTitle;
     protected $order;
     
     protected $active;
 
-    protected static $table = 'content_company';
+    protected static $table = 'related_fields';
 	
     public static function create($db,$formData) 
     {	
@@ -21,14 +20,15 @@ class AboutSzif extends DefaultModel {
         if (key_exists('active',$formData)) {
             if ($formData['active'] == 1) $active = 1;
         }
-        $iconID = null;
-        $iconID = ($formData["icon"] == '') ? null:$formData["icon"];
-        
+
+        if (!key_exists('optionalTitle',$formData)) {
+            $formData['optionalTitle'] = '';
+        }
+
         $values = array(
-            'headline%s' => $formData["headline"],
-            'content%s' => $formData["content"],
-            'icon%i' => $iconID,            
-            'order%i' => $formData["order"],            
+            'title%s' => $formData["title"],
+            'optionalTitle%s' => $formData["optionalTitle"],
+            'order%i' => $formData["order"],
             'createDate%sql' => 'NOW()',
             'active%i' => $active
         );
@@ -42,14 +42,13 @@ class AboutSzif extends DefaultModel {
         if (key_exists('active',$formData)) {
             if ($formData['active'] == 1) $active = 1;
         }
-
-        $iconID = null;
-        $iconID = ($formData["icon"] == '') ? null:$formData["icon"];
+        if (!key_exists('optionalTitle',$formData)) {
+            $formData['optionalTitle'] = '';
+        }
 
         $values = array(
-            'headline%s' => $formData["headline"],
-            'content%s' => $formData["content"],
-            'icon%i' => $iconID,
+            'title%s' => $formData["title"],
+            'optionalTitle%s' => $formData["optionalTitle"],
             'order%i' => $formData["order"],
             'modifyDate%sql' => 'NOW()',
             'active%i' => $active

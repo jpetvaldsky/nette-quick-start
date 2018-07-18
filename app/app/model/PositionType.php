@@ -8,8 +8,7 @@ class PositionType extends DefaultModel {
 
     protected $title;
     protected $abbreviation;
-    protected $createDate;
-    protected $modifyDate;
+    
     protected $active;
 
     protected static $table = 'related_positionType';

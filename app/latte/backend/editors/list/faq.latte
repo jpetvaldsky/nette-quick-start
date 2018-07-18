@@ -1,0 +1,47 @@
+{layout '../../@layout.latte'}
+{includeblock '../../components/moduls/cards/user.latte'}
+
+{block content}
+<h2>{$headline}</h2>
+
+{ifset $data}
+<div class="card">
+<table class="table table-striped table-responsive-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nadpis</th>
+            <th>Obsah</th>
+            <th>ID Infografika</th>
+            <th>Pořadí</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {foreach $data as $item}
+        <tr>
+            <td>{$item->id}</td>
+            <td><strong>{$item->title|truncate,50,'…'}</strong></td>
+            <td>{$item->content|truncate,50,'…'}</td>
+            <td>{$item->infographicsID}</td>
+            <td>{$item->order}</td>
+            <td>{if $item->active == 1}<span class="badge badge-success">Aktivní</span>{else}<span class="badge badge-secondary">Vypnutý</span>{/if}</td>
+            <td>
+                <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="btn btn-primary btn-sm">Editovat</a>
+                &nbsp;<a href="{$basePath}/{$pathPrefix}/smazat/{$item->id}" class="btn btn-warning btn-sm" onclick="return confirm('Opravdu smazat?')">Smazat</a>
+            </td>
+        
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
+</div>
+{else}
+    {include noEntry, entryLink => $pathPrefix}
+{/ifset}
+
+</div>
+
+
+{/block}

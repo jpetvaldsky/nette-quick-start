@@ -41,8 +41,7 @@ class Template2a3ecf1b5f extends Latte\Runtime\Template
 	function blockContent($_args)
 	{
 		extract($_args);
-?>
-<h2>Uživatelé</h2>
+		?><h2><?php echo LR\Filters::escapeHtmlText($headline) /* line 5 */ ?></h2>
 
 <div class="row">
 <?php

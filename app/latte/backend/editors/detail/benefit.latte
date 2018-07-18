@@ -1,0 +1,24 @@
+{layout '../../@layout.latte'}
+{block content}
+<h2>{$headline}</h2>
+<form action="{$basePath}/{$pathPrefix}/" method="post" class="form-horizontal">
+<div class="card">
+    <div class="card-header">
+        <strong>{ifset $item}Editace, ID: {$item->id}{else}Nový záznam{/ifset}</strong>
+    </div>
+    <div class="card-body">
+            {include #textInput, id=>'title',title=>'Nadpis',placeholder=>'Zadejte nadpis',value => isset($item)? $item->title: '' }
+            {include #textArea, id=>'content',title=>'Obsah',placeholder=>'Text obsahu ...',value => isset($item)? $item->content: '', rows => 4 }
+            {* include #textArea, id=>'altContent',title=>'Obsah (Alternativa)',placeholder=>'Variantní text obsahu ...',value => isset($item)? $item->altContent: '', rows => 4  *}
+
+            {include #relatedContent, id=>'icon',model=>'Model\Media',title=>'Ikonka',defaultOption=>'Vyberte obrázek',value=> isset($item)? $item->icon: '',photoPreview => true}
+
+            {include #textInput, id=>'order',title=>'Pořadí',placeholder=>'',value => isset($item)? $item->order: '' }
+
+            {include #activeCheckbox}
+        
+    </div>
+    {include #formSubmit}
+</div>
+</form>
+{/block}

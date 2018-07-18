@@ -18,7 +18,12 @@ require 'app/Admin.php';
 
 
 require 'app/Admin/DefaultModul.php';
+require 'app/Admin/AboutSzifModul.php';
+require 'app/Admin/BenefitModul.php';
 require 'app/Admin/BranchModul.php';
+require 'app/Admin/FaqModul.php';
+require 'app/Admin/FieldModul.php';
+require 'app/Admin/HRTeamModul.php';
 require 'app/Admin/MediaModul.php';
 require 'app/Admin/PositionTypeModul.php';
 require 'app/Admin/RegionModul.php';
@@ -27,7 +32,12 @@ require 'app/Admin/UserModul.php';
 
 
 require 'app/Model/Default.php';
+require 'app/Model/AboutSzif.php';
+require 'app/Model/Benefit.php';
 require 'app/Model/Branch.php';
+require 'app/Model/Faq.php';
+require 'app/Model/Field.php';
+require 'app/Model/HRTeam.php';
 require 'app/Model/Media.php';
 require 'app/Model/PositionType.php';
 require 'app/Model/Region.php';

@@ -13,8 +13,7 @@ class Branch extends DefaultModel {
     protected $phoneNumber;
     protected $email;
     protected $photo;
-    protected $createDate;
-    protected $modifyDate;
+    
     protected $active;
 
     protected static $table = 'related_branches';

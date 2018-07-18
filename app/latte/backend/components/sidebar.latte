@@ -27,7 +27,15 @@
               <a class="nav-link{if $section == 'about'} active{/if}" href="{$basePath}/o-szifu">
                 <i class="nav-icon icon-speech"></i> O SZIFu</a>
             </li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'benefit'} active{/if}" href="{$basePath}/benefity">
+                <i class="nav-icon icon-present"></i> Benefity</a>
+            </li>
             <li class="nav-title" n:if="$superAdmin">Související obsah</li>
+            <li class="nav-item" n:if="$superAdmin">
+              <a class="nav-link{if $section == 'fields'} active{/if}" href="{$basePath}/obory">
+                <i class="nav-icon icon-chemistry"></i> Obory</a>
+            </li>
             <li class="nav-item" n:if="$superAdmin">
               <a class="nav-link{if $section == 'position-type'} active{/if}" href="{$basePath}/typy-pozic">
                 <i class="nav-icon icon-layers"></i> Pozice</a>

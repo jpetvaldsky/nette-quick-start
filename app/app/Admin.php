@@ -1,13 +1,22 @@
 <?php
 
-
+use Admin\AboutSzifModul;
+use Admin\BenefitModul;
 use Admin\BranchModul;
+use Admin\FaqModul;
+use Admin\FieldModul;
+use Admin\HRTeamModul;
 use Admin\MediaModul;
 use Admin\PositionTypeModul;
 use Admin\RegionModul;
 use Admin\UserModul;
 
+use Model\AboutSzif;
+use Model\Benefit;
 use Model\Branch;
+use Model\Faq;
+use Model\Field;
+use Model\HRTeam;
 use Model\PositionType;
 use Model\Region;
 use Model\User;
@@ -88,6 +97,31 @@ class Admin 	{
 			
 			if ($this->user->role == "superadmin") {
 				switch ($route[1]) {
+					case "hr-team":
+						$this->pageData['section'] = 'hr-team';
+						$this->editor = new HRTeamModul($this->connection);
+						$this->editor->init($this->template,$this->pageData,$route);
+						break;
+					case "faq":
+						$this->pageData['section'] = 'faq';
+						$this->editor = new FaqModul($this->connection);
+						$this->editor->init($this->template,$this->pageData,$route);
+						break;
+					case "o-szifu":
+						$this->pageData['section'] = 'about';
+						$this->editor = new AboutSzifModul($this->connection);
+						$this->editor->init($this->template,$this->pageData,$route);
+						break;
+					case "benefity":
+						$this->pageData['section'] = 'benefit';
+						$this->editor = new BenefitModul($this->connection);
+						$this->editor->init($this->template,$this->pageData,$route);
+						break;
+					case "obory":
+						$this->pageData['section'] = 'fields';
+						$this->editor = new FieldModul($this->connection);
+						$this->editor->init($this->template,$this->pageData,$route);
+						break;
 					case "typy-pozic":
 						$this->pageData['section'] = 'position-type';
 						$this->editor = new PositionTypeModul($this->connection);
@@ -160,7 +194,7 @@ class Admin 	{
 			if ($file != null) {
 				return '<img src="'.$file.'" >';
 			}
-			return '-- error --';
+			return '&nbsp;';
 		});
 
 		//RELATED CONTENT
@@ -183,9 +217,11 @@ class Admin 	{
 
 		//GET OBJECT ATTRIBUTE
 		$this->latte->addFilter('getAttr', function($id,$model,$attribute="title") {
-			$data = call_user_func(array($model,'getByID'),$this->connection,$id);
-			if (key_exists($attribute,$data)) {
-				return $data[$attribute];
+			if ($id != '') {
+				$data = call_user_func(array($model,'getByID'),$this->connection,$id);
+				if (key_exists($attribute,$data)) {
+					return $data[$attribute];
+				}
 			}
 			return $id;
 		});

@@ -7,7 +7,11 @@ class DefaultModel {
 
 	protected $connection;
 
-    protected $id;
+	protected $id;
+	
+	protected $createDate;
+	protected $modifyDate;
+	
     protected $tableName;
 
     protected static $table;

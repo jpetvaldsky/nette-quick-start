@@ -7,6 +7,15 @@
             </div>
 {/define}
 
+{define #textArea}
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="{$id}">{$title}</label>
+                <div class="col-md-9">
+                    <textarea id="{$id}" name="{$id}" class="form-control" rows="{$rows}" placeholder="{$placeholder}">{$value}</textarea>                    
+                </div>
+            </div>
+{/define}
+
 {define #relatedContent}
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="{$id}">{$title}</label>

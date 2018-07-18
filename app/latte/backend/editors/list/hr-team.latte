@@ -1,0 +1,52 @@
+{layout '../../@layout.latte'}
+{includeblock '../../components/moduls/cards/user.latte'}
+
+{block content}
+<h2>{$headline}</h2>
+
+{ifset $data}
+<div class="row">
+{foreach $data as $item}
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+            <strong>{$item->fullName}</strong> <span class="badge badge-pill badge-primary">ID: {$item->id}</span>
+                <div class="card-header-actions">
+                    <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="card-header-action btn-setting"><i class="icon-pencil"></i></a>
+                    <a href="{$basePath}/{$pathPrefix}/smazat/{$item->id}" onclick="return confirm('Opravdu smazat?')" class="card-header-action btn-setting"><i class="icon-trash"></i></a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">{$item->avatar|getAttr,"Model\Media","mediaHash"|thumb,0,120|noescape}</div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <strong>{$item->fullName}</strong> ({$item->position})
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <em>{$item->motto|breaklines|noescape}</em><br>
+                        {$item->content|breaklines|noescape}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4 offset-md-4">
+                        <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="btn btn-primary btn-block">Editovat</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{/foreach}
+{else}
+    {include noEntry, entryLink => $pathPrefix}
+{/ifset}
+
+</div>
+
+
+{/block}

@@ -16,8 +16,7 @@ class Media extends DefaultModel {
     protected $serverPath;
     protected $type;
     protected $filesize;
-    protected $createDate;
-    protected $modifyDate;
+    
 
 	protected static $table = 'media';
 	
@@ -65,22 +64,24 @@ class Media extends DefaultModel {
 
 	public static function thumbnail($db,$hash,$width=0,$height=0) {
 		$mediaFile = Media::getByHash($db,$hash);
-		if (file_exists(ROOT_FOLDER.$mediaFile["serverPath"])) {
-			FileSystem::createDir(ROOT_FOLDER.THUMB_FOLDER.$hash);
-			$ext = 'jpg';
-			$imageType = Image::JPEG;
-			if ($mediaFile["type"] == "image/png") {
-				$ext = 'png';
-				$imageType = Image::PNG;
+		if ($mediaFile != null) {
+			if (is_file(ROOT_FOLDER.$mediaFile["serverPath"])) {
+				FileSystem::createDir(ROOT_FOLDER.THUMB_FOLDER.$hash);
+				$ext = 'jpg';
+				$imageType = Image::JPEG;
+				if ($mediaFile["type"] == "image/png") {
+					$ext = 'png';
+					$imageType = Image::PNG;
+				}
+				$filename = THUMB_FOLDER.$hash.'/'.$width.'x'.$height.'.'.$ext;
+				$output = ROOT_FOLDER.$filename;
+				if (!file_exists($output)) {
+					$image = Image::fromFile(ROOT_FOLDER.$mediaFile["serverPath"]);
+					$image->resize($width, $height,Image::FIT | Image::SHRINK_ONLY);
+					$image->save($output, 90, $imageType);
+				}
+				return $filename;
 			}
-			$filename = THUMB_FOLDER.$hash.'/'.$width.'x'.$height.'.'.$ext;
-			$output = ROOT_FOLDER.$filename;
-			if (!file_exists($output)) {
-				$image = Image::fromFile(ROOT_FOLDER.$mediaFile["serverPath"]);
-				$image->resize($width, $height,Image::FIT | Image::SHRINK_ONLY);
-				$image->save($output, 90, $imageType);
-			}
-			return $filename;
 		}
 		return null;
 	}

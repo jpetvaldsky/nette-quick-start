@@ -8,8 +8,7 @@ class Region extends DefaultModel {
 
     protected $title;
     protected $mapClass;
-    protected $createDate;
-    protected $modifyDate;
+    
     protected $active;
 
     protected static $table = 'related_regions';

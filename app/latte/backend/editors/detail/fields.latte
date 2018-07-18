@@ -1,0 +1,21 @@
+{layout '../../@layout.latte'}
+{block content}
+<h2>{$headline}</h2>
+<form action="{$basePath}/{$pathPrefix}/" method="post" class="form-horizontal">
+<div class="card">
+    <div class="card-header">
+        <strong>{ifset $item}Editace, ID: {$item->id}{else}Nový záznam{/ifset}</strong>
+    </div>
+    <div class="card-body">
+            {include #textInput, id=>'title',title=>'Název',placeholder=>'Zadejte název oboru',value => isset($item)? $item->title: '' }
+            {include #textInput, id=>'optionalTitle',title=>'Alt. název',placeholder=>'Zadejte alternativní název oboru',value => isset($item)? $item->optionalTitle: '' }
+            
+            {include #textInput, id=>'order',title=>'Pořadí',placeholder=>'',value => isset($item)? $item->order: '' }
+            
+            {include #activeCheckbox}
+        
+    </div>
+    {include #formSubmit}
+</div>
+</form>
+{/block}

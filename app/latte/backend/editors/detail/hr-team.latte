@@ -1,0 +1,26 @@
+{layout '../../@layout.latte'}
+{block content}
+<h2>{$headline}</h2>
+<form action="{$basePath}/{$pathPrefix}/" method="post" class="form-horizontal">
+<div class="card">
+    <div class="card-header">
+        <strong>{ifset $item}Editace, ID: {$item->id}{else}Nový záznam{/ifset}</strong>
+    </div>
+    <div class="card-body">
+            {include #textInput, id=>'fullName',title=>'Jméno a Příjmení',placeholder=>'Zadejte celé jméno a příjmení',value => isset($item)? $item->fullName: '' }
+            {include #textInput, id=>'position',title=>'Podtitulek',placeholder=>'',value => isset($item)? $item->position: '' }
+            {include #relatedContent, id=>'location',model=>'Model\Branch',title=>'Pobočka',defaultOption=>'Vyberte prosím pobočku',value=> isset($item)? $item->location: ''}
+            
+            {include #textArea, id=>'motto',title=>'Tip pro uchazeče',placeholder=>'',value => isset($item)? $item->motto: '', rows => 2 }
+            {include #textInput, id=>'linkedinURL',title=>'LinkedIN',placeholder=>'',value => isset($item)? $item->linkedinURL: '' }
+            {include #textArea, id=>'content',title=>'Text',placeholder=>'Text ...',value => isset($item)? $item->content: '', rows => 3 }
+
+            {include #relatedContent, id=>'avatar',model=>'Model\Media',title=>'Obrázek',defaultOption=>'Vyberte obrázek',value=> isset($item)? $item->avatar: '',photoPreview => true}            
+
+            {include #activeCheckbox}
+        
+    </div>
+    {include #formSubmit}
+</div>
+</form>
+{/block}

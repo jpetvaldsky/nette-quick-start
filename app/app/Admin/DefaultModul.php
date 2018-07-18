@@ -89,6 +89,9 @@ class DefaultModul {
 
     protected function processFormData($data,&$route) {
         if (key_exists("action",$data)) {
+            if (key_exists('order',$data)) {
+                if ($data['order'] == '') $data['order'] = 0;
+            }
             if ($data["action"] == "create") {                
                 $insResult = call_user_func(array($this->modelClass,'create'),$this->connection,$data);
                 array_push($this->pageData["flashes"],array('type' => 'success', 'style' => 'success', 'text' => 'Nový záznam byl vytvořen v pořádku.'));

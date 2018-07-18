@@ -10,8 +10,7 @@ class User extends DefaultModel {
 	protected $fullName;
 	protected $email;
 	protected $role;
-	protected $createDate;
-	protected $modifyDate;
+	
 	protected $active;
 
 	protected static $table = 'user';

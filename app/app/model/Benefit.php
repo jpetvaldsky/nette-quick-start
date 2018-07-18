@@ -4,16 +4,19 @@ namespace Model;
 use Nette\Utils\Strings;
 use Tracy\Debugger;
 
-class AboutSzif extends DefaultModel {
+class Benefit extends DefaultModel {
 
-    protected $headline;
+    protected $title;
     protected $content;
+    protected $altContent;
     protected $icon;
     protected $order;
     
     protected $active;
 
-    protected static $table = 'content_company';
+    
+
+    protected static $table = 'content_benefits';
 	
     public static function create($db,$formData) 
     {	
@@ -23,10 +26,14 @@ class AboutSzif extends DefaultModel {
         }
         $iconID = null;
         $iconID = ($formData["icon"] == '') ? null:$formData["icon"];
+
+        if (!key_exists("altContent",$formData))
+            $formData["altContent"] = '';
         
         $values = array(
-            'headline%s' => $formData["headline"],
+            'title%s' => $formData["title"],
             'content%s' => $formData["content"],
+            'altContent%s' => $formData["altContent"],
             'icon%i' => $iconID,            
             'order%i' => $formData["order"],            
             'createDate%sql' => 'NOW()',
@@ -46,9 +53,13 @@ class AboutSzif extends DefaultModel {
         $iconID = null;
         $iconID = ($formData["icon"] == '') ? null:$formData["icon"];
 
+        if (!key_exists("altContent",$formData))
+            $formData["altContent"] = '';
+
         $values = array(
-            'headline%s' => $formData["headline"],
+            'title%s' => $formData["title"],
             'content%s' => $formData["content"],
+            'altContent%s' => $formData["altContent"],
             'icon%i' => $iconID,
             'order%i' => $formData["order"],
             'modifyDate%sql' => 'NOW()',
