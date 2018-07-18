@@ -67,12 +67,18 @@ class Media extends DefaultModel {
 		$mediaFile = Media::getByHash($db,$hash);
 		if (file_exists(ROOT_FOLDER.$mediaFile["serverPath"])) {
 			FileSystem::createDir(ROOT_FOLDER.THUMB_FOLDER.$hash);
-			$filename = THUMB_FOLDER.$hash.'/'.$width.'x'.$height.'.jpg';
+			$ext = 'jpg';
+			$imageType = Image::JPEG;
+			if ($mediaFile["type"] == "image/png") {
+				$ext = 'png';
+				$imageType = Image::PNG;
+			}
+			$filename = THUMB_FOLDER.$hash.'/'.$width.'x'.$height.'.'.$ext;
 			$output = ROOT_FOLDER.$filename;
 			if (!file_exists($output)) {
 				$image = Image::fromFile(ROOT_FOLDER.$mediaFile["serverPath"]);
 				$image->resize($width, $height);
-				$image->save($output, 90, Image::JPEG);
+				$image->save($output, 90, $imageType);
 			}
 			return $filename;
 		}

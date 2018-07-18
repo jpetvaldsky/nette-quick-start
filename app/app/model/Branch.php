@@ -4,15 +4,20 @@ namespace Model;
 use Nette\Utils\Strings;
 use Tracy\Debugger;
 
-class Region extends DefaultModel {
+class Branch extends DefaultModel {
 
     protected $title;
-    protected $mapClass;
+    protected $address;
+    protected $city;
+    protected $region;
+    protected $phoneNumber;
+    protected $email;
+    protected $photo;
     protected $createDate;
     protected $modifyDate;
     protected $active;
 
-    protected static $table = 'related_regions';
+    protected static $table = 'related_branches';
 	
     public static function create($db,$formData) 
     {	
@@ -22,7 +27,12 @@ class Region extends DefaultModel {
         }
         $values = array(
             'title%s' => $formData["title"],
-            'mapClass%s' => ($formData["mapClass"] == '') ? null:$formData["mapClass"],
+            'address%s' => $formData["address"],
+            'city%s' => $formData["city"],
+            'region%i' => ($formData["region"] == '') ? null:$formData["region"],
+            'phoneNumber%s' => $formData["phoneNumber"],
+            'email%s' => $formData["email"],
+            'photo%i' => ($formData["photo"] == '') ? null:$formData["photo"],
             'createDate%sql' => 'NOW()',
             'active%i' => $active
         );
@@ -38,7 +48,12 @@ class Region extends DefaultModel {
         }
         $values = array(
             'title%s' => $formData["title"],
-            'mapClass%s' => ($formData["mapClass"] == '') ? null:$formData["mapClass"],
+            'address%s' => $formData["address"],
+            'city%s' => $formData["city"],
+            'region%i' => ($formData["region"] == '') ? null:$formData["region"],
+            'phoneNumber%s' => $formData["phoneNumber"],
+            'email%s' => $formData["email"],
+            'photo%i' => ($formData["photo"] == '') ? null:$formData["photo"],
             'modifyDate%sql' => 'NOW()',
             'active%i' => $active
         );

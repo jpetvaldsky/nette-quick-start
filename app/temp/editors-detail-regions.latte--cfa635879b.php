@@ -34,8 +34,7 @@ class Templatecfa635879b extends Latte\Runtime\Template
 	function blockContent($_args)
 	{
 		extract($_args);
-?>
-<h2>Kraje</h2>
+		?><h2><?php echo LR\Filters::escapeHtmlText($headline) /* line 3 */ ?></h2>
 <form action="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 4 */ ?>/<?php
 		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 4 */ ?>/" method="post" class="form-horizontal">
 <div class="card">
@@ -50,7 +49,7 @@ class Templatecfa635879b extends Latte\Runtime\Template
 		}
 ?></strong>
     </div>
-    <div class="card-body">        
+    <div class="card-body">
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="title">Název</label>
                 <div class="col-md-9">
@@ -62,57 +61,23 @@ class Templatecfa635879b extends Latte\Runtime\Template
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="mapIcon">Ikona mapy</label>
+                <label class="col-md-3 col-form-label" for="mapClass">Ikona mapy</label>
                 <div class="col-md-9">
-                    <input type="text" id="mapIcon" name="mapIcon" value="<?php
+                    <input type="text" id="mapClass" name="mapClass" value="<?php
 		if (isset($item)) {
-			echo LR\Filters::escapeHtmlAttr($item->mapIcon) /* line 19 */;
+			echo LR\Filters::escapeHtmlAttr($item->mapClass) /* line 19 */;
 		}
 ?>" class="form-control" placeholder="ID ikony">
                 </div>
             </div>            
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label">Aktivní záznam</label>
-                <div class="col-md-9 col-form-label">
-                    <div class="form-check checkbox">
 <?php
-		if (isset($item)) {
-			if ($item->active == 1) {
+		$this->renderBlock('activeCheckbox', $this->params, 'html');
 ?>
-                            <input class="form-check-input" type="checkbox" name="active" value="1" checked id="active">
-<?php
-			}
-			else {
-?>
-                            <input class="form-check-input" type="checkbox" name="active" value="1" id="active">
-<?php
-			}
-		}
-		else {
-?>
-                            <input class="form-check-input" type="checkbox" name="active" value="1" checked id="active">
-<?php
-		}
-?>
-                        
-                        <label class="form-check-label" for="active">
-                            Aktivovat
-                        </label>
-                    </div>
-                </div>
-            </div>
         
     </div>
-    <div class="card-footer text-center">
-        <input type="hidden" name="action" value="<?php echo LR\Filters::escapeHtmlAttr($formAction) /* line 45 */ ?>">
-        <?php
-		if (isset($item)) {
-			?><input type="hidden" name="id" value="<?php echo LR\Filters::escapeHtmlAttr($item->id) /* line 46 */ ?>"><?php
-		}
+<?php
+		$this->renderBlock('formSubmit', $this->params, 'html');
 ?>
-
-        <button type="submit" class="btn btn-md btn-primary col-sm-12 col-md-4"><i class="fa fa-plus-circle"></i> Uložit</button>
-    </div>
 </div>
 </form>
 <?php

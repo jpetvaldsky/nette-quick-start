@@ -1,6 +1,7 @@
 <?php
 
 
+use Admin\BranchModul;
 use Admin\MediaModul;
 use Admin\PositionTypeModul;
 use Admin\RegionModul;
@@ -97,7 +98,7 @@ class Admin 	{
 						break;
 					case "pobocky":
 						$this->pageData['section'] = 'branches';
-						$this->editor = new BranchesModul($this->connection);
+						$this->editor = new BranchModul($this->connection);
 						$this->editor->init($this->template,$this->pageData,$route);
 						break;
 					case "kraje":

@@ -35,6 +35,7 @@ class DefaultModul {
         array_push($this->pageData["pages"],array('link' => '', 'icon' => $this->pageIcon,'title'=>$this->pageTitle));
         
         $this->pageData["pathPrefix"] = $this->pathPrefix;
+        $this->pageData["headline"] = $this->pageTitle;
         $this->pageData["newItem"] = true;
         $this->pageData["newItemLink"] = $this->pageData["basePath"].'/'.$this->pathPrefix.'/novy-zaznam';
 

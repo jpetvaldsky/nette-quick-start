@@ -3,16 +3,13 @@
     width: 100%;
 }
 
-.qq-upload-drop-area, .qq-upload-extra-drop-area {
-    position: absolute;
-    top: 0;
-    left: 0;
+.qq-upload-drop-area, .qq-upload-extra-drop-area {    
     width: 100%;    
     padding: 2.5em;
-    z-index: 2;
+    margin-bottom: .5rem;
     background: #ffffff;
     text-align: center;
-    border: 1px dashed #003630;
+    border: 1px dotted #20a8d8;
     border-radius: 4px;
 }
 .qq-upload-drop-area span {
@@ -31,7 +28,11 @@
     height: 20px;
     min-height: 40px;
 }
+
 .qq-upload-drop-area-active {
+    border: 1px solid #20a8d8;
+    background: #20a8d8;
+    color: #ffffff;
 }
 
 .qq-upload-list {

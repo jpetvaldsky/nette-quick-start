@@ -1,0 +1,52 @@
+{define #textInput}
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="{$id}">{$title}</label>
+                <div class="col-md-9">
+                    <input type="text" id="{$id}" name="{$id}" value="{$value}" class="form-control" placeholder="{$placeholder}">
+                </div>
+            </div>
+{/define}
+
+{define #mediaUpload}
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="title">Soubor</label>
+                <div class="col-md-9">
+                    {ifset $item}<div class="mb-3">{$item->mediaHash|thumb,250,0|noescape}</div>{/ifset}
+                    <div id="mediaContainer" data-uuid="" class="media-uploader"></div>
+                    <input type="hidden" id="mediaContainerID" name="mediaHash" value="{ifset $item}{$item->mediaHash}{/ifset}">
+                </div>
+            </div>
+
+            {include fileUploader, label => 'Nahrát soubor'}
+{/define}
+
+{define #activeCheckbox}
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">Aktivní záznam</label>
+                <div class="col-md-9 col-form-label">
+                    <div class="form-check checkbox">
+                        {ifset $item}
+                            {if $item->active == 1}
+                            <input class="form-check-input" type="checkbox" name="active" value="1" checked id="active">
+                            {else}
+                            <input class="form-check-input" type="checkbox" name="active" value="1" id="active">
+                            {/if}
+                        {else}
+                            <input class="form-check-input" type="checkbox" name="active" value="1" checked id="active">
+                        {/ifset}
+                        
+                        <label class="form-check-label" for="active">
+                            Aktivovat
+                        </label>
+                    </div>
+                </div>
+            </div>
+{/define}
+
+{define #formSubmit}
+    <div class="card-footer text-center">
+        <input type="hidden" name="action" value="{$formAction}">
+        {ifset $item}<input type="hidden" name="id" value="{$item->id}">{/ifset}
+        <button type="submit" class="btn btn-md btn-primary col-sm-12 col-md-4"><i class="fa fa-plus-circle"></i> Uložit</button>
+    </div>
+{/define}

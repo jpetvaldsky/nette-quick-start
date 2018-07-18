@@ -37,8 +37,7 @@ class Template5a3353c20a extends Latte\Runtime\Template
 	function blockContent($_args)
 	{
 		extract($_args);
-?>
-<h2>Média</h2>
+		?><h2><?php echo LR\Filters::escapeHtmlText($headline) /* line 4 */ ?></h2>
 <form action="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 5 */ ?>/<?php
 		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 5 */ ?>/" method="post" class="form-horizontal">
 <div class="card">
@@ -54,40 +53,20 @@ class Template5a3353c20a extends Latte\Runtime\Template
 ?></strong>
     </div>
     <div class="card-body">
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="title">Název</label>
-                <div class="col-md-9">
-                    <input type="text" id="title" name="title" value="<?php
-		if (isset($item)) {
-			echo LR\Filters::escapeHtmlAttr($item->title) /* line 14 */;
-		}
-?>" class="form-control" placeholder="Zadejte popisek souboru">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="title">Soubor</label>                
-                <div class="col-md-9">
-                    <?php
-		if (isset($item)) {
-			?><div class="mb-3"><?php echo call_user_func($this->filters->thumb, $item->mediaHash, 250, 0) /* line 20 */ ?></div><?php
-		}
+<?php
+		$this->renderBlock('textInput', ['id'=>'title','title'=>'Název','placeholder'=>'Zadejte popisek souboru','value' => isset($item)? $item->title: ''] + $this->params, 'html');
 ?>
-
-                    <div id="mediaContainer" data-uuid="" class="media-uploader"></div>
-                    <input type="hidden" id="mediaContainerID" name="mediaHash" value="<?php
-		if (isset($item)) {
-			echo LR\Filters::escapeHtmlAttr($item->mediaHash) /* line 22 */;
-		}
-?>">
-                </div>
-            </div>
+            
+<?php
+		$this->renderBlock('mediaUpload', $this->params, 'html');
+?>
         
     </div>
     <div class="card-footer text-center">
-        <input type="hidden" name="action" value="<?php echo LR\Filters::escapeHtmlAttr($formAction) /* line 28 */ ?>">
+        <input type="hidden" name="action" value="<?php echo LR\Filters::escapeHtmlAttr($formAction) /* line 17 */ ?>">
         <?php
 		if (isset($item)) {
-			?><input type="hidden" name="id" value="<?php echo LR\Filters::escapeHtmlAttr($item->id) /* line 29 */ ?>"><?php
+			?><input type="hidden" name="id" value="<?php echo LR\Filters::escapeHtmlAttr($item->id) /* line 18 */ ?>"><?php
 		}
 ?>
 
@@ -95,10 +74,7 @@ class Template5a3353c20a extends Latte\Runtime\Template
     </div>
 </div>
 
-
 <?php
-		$this->renderBlock('fileUploader', ['label' => 'Nahrát soubor'] + $this->params, 'html');
-		
 	}
 
 }

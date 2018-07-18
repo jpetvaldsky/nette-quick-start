@@ -31,7 +31,7 @@ class Template7fd54307ff extends Latte\Runtime\Template
             Nahrání souboru
         </div>
         <div class="card-body">
-            <div class="qq-upload-drop-area-selector" qq-hide-dropzone>
+            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
                 <span>Přetáhněte soubor tady</span>
             </div>
             <div class="qq-upload-button-selector btn btn-primary">

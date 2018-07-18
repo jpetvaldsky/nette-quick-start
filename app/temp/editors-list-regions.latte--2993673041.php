@@ -38,8 +38,7 @@ class Template2993673041 extends Latte\Runtime\Template
 	function blockContent($_args)
 	{
 		extract($_args);
-?>
-<h2>Kraje</h2>
+		?><h2><?php echo LR\Filters::escapeHtmlText($headline) /* line 4 */ ?></h2>
 
 <?php
 		if (isset($data)) {
@@ -63,7 +62,7 @@ class Template2993673041 extends Latte\Runtime\Template
         <tr>
             <td><?php echo LR\Filters::escapeHtmlText($item->id) /* line 21 */ ?></td>
             <td><strong><?php echo LR\Filters::escapeHtmlText($item->title) /* line 22 */ ?></strong></td>
-            <td><?php echo LR\Filters::escapeHtmlText($item->mapIcon) /* line 23 */ ?></td>
+            <td><?php echo LR\Filters::escapeHtmlText($item->mapClass) /* line 23 */ ?></td>
             <td><?php
 				if ($item->active == 1) {
 					?><span class="badge badge-success">Aktivní</span><?php
@@ -75,6 +74,8 @@ class Template2993673041 extends Latte\Runtime\Template
             <td>
                 <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 26 */ ?>/<?php
 				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 26 */ ?>/editovat/<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($item->id)) /* line 26 */ ?>" class="btn btn-primary btn-sm">Editovat</a>
+                &nbsp;<a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 27 */ ?>/<?php
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 27 */ ?>/smazat/<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($item->id)) /* line 27 */ ?>" class="btn btn-warning btn-sm" onclick="return confirm('Opravdu smazat?')">Smazat</a>
             </td>
         
         </tr>

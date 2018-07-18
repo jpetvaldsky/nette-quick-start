@@ -24,7 +24,7 @@
             <td>{if $item->active == 1}<span class="badge badge-success">Aktivní</span>{else}<span class="badge badge-secondary">Vypnutý</span>{/if}</td>
             <td>
                 <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="btn btn-primary btn-sm">Editovat</a>
-                {*&nbsp;<a href="{$basePath}/typy-pozic/smazat/{$item->id}" class="btn btn-warning btn-sm">Smazat</a>*}
+                &nbsp;<a href="{$basePath}/{$pathPrefix}/smazat/{$item->id}" class="btn btn-warning btn-sm" onclick="return confirm('Opravdu smazat?')">Smazat</a>
             </td>
         
         </tr>

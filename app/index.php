@@ -18,7 +18,7 @@ require 'app/Admin.php';
 
 
 require 'app/Admin/DefaultModul.php';
-
+require 'app/Admin/BranchModul.php';
 require 'app/Admin/MediaModul.php';
 require 'app/Admin/PositionTypeModul.php';
 require 'app/Admin/RegionModul.php';
@@ -27,6 +27,7 @@ require 'app/Admin/UserModul.php';
 
 
 require 'app/Model/Default.php';
+require 'app/Model/Branch.php';
 require 'app/Model/Media.php';
 require 'app/Model/PositionType.php';
 require 'app/Model/Region.php';

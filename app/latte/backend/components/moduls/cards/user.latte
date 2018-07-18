@@ -2,6 +2,10 @@
 <div class="card">
 <div class="card-header">
    <strong>{$item->fullName}</strong> <span class="badge badge-pill badge-primary">ID: {$item->id}</span>
+    <div class="card-header-actions">
+        <a href="{$basePath}/{$pathPrefix}/editovat/{$item->id}" class="btn btn-primary btn-sm">Editovat</a>
+        &nbsp;<a href="{$basePath}/{$pathPrefix}/smazat/{$item->id}" class="btn btn-warning btn-sm" onclick="return confirm('Opravdu smazat?')">Smazat</a>
+   </div>
 </div>
 <div class="card-body">
     <div class="row">

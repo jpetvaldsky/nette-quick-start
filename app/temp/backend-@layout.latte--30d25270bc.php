@@ -15,6 +15,9 @@ class Template30d25270bc extends Latte\Runtime\Template
 		ob_start(function () {});
 		$this->createTemplate('components/no-entry.latte', get_defined_vars(), "includeblock")->renderToContentType('html');
 		echo rtrim(ob_get_clean());
+		ob_start(function () {});
+		$this->createTemplate('components/shared-forms.latte', get_defined_vars(), "includeblock")->renderToContentType('html');
+		echo rtrim(ob_get_clean());
 ?>
 
 <!DOCTYPE html>
@@ -38,18 +41,18 @@ class Template30d25270bc extends Latte\Runtime\Template
   </head>
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 <?php
-		/* line 24 */
+		/* line 25 */
 		$this->createTemplate('components/header.latte', $this->params, "include")->renderToContentType('html');
 ?>
     <div class="app-body">
 <?php
-		/* line 26 */
+		/* line 27 */
 		$this->createTemplate('components/sidebar.latte', $this->params, "include")->renderToContentType('html');
 ?>
       <main class="main">
         <!-- Breadcrumb-->
 <?php
-		/* line 29 */
+		/* line 30 */
 		$this->createTemplate('components/breadcrumb.latte', $this->params, "include")->renderToContentType('html');
 ?>
         <div class="container-fluid">
@@ -66,12 +69,12 @@ class Template30d25270bc extends Latte\Runtime\Template
       </main>
     </div>
 <?php
-		/* line 41 */
+		/* line 42 */
 		$this->createTemplate('components/footer.latte', $this->params, "include")->renderToContentType('html');
 ?>
     
 <?php
-		/* line 43 */
+		/* line 44 */
 		$this->createTemplate('components/assets.latte', $this->params, "include")->renderToContentType('html');
 ?>
   </body>

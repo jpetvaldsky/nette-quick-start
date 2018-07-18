@@ -34,8 +34,7 @@ class Templatec1538dd715 extends Latte\Runtime\Template
 	function blockContent($_args)
 	{
 		extract($_args);
-?>
-<h2>Typy pozic</h2>
+		?><h2><?php echo LR\Filters::escapeHtmlText($headline) /* line 3 */ ?></h2>
 <form action="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 4 */ ?>/<?php
 		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($pathPrefix)) /* line 4 */ ?>/" method="post" class="form-horizontal">
 <div class="card">
@@ -50,69 +49,20 @@ class Templatec1538dd715 extends Latte\Runtime\Template
 		}
 ?></strong>
     </div>
-    <div class="card-body">        
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="title">Název</label>
-                <div class="col-md-9">
-                    <input type="text" id="title" name="title" value="<?php
-		if (isset($item)) {
-			echo LR\Filters::escapeHtmlAttr($item->title) /* line 13 */;
-		}
-?>" class="form-control" placeholder="Zadejte název pozice">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="abbreviation">Zkratka</label>
-                <div class="col-md-9">
-                    <input type="text" id="abbreviation" name="abbreviation" value="<?php
-		if (isset($item)) {
-			echo LR\Filters::escapeHtmlAttr($item->abbreviation) /* line 19 */;
-		}
-?>" class="form-control" placeholder="Zkratka názvu pozice">
-                </div>
-            </div>            
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label">Aktivní záznam</label>
-                <div class="col-md-9 col-form-label">
-                    <div class="form-check checkbox">
+    <div class="card-body">
 <?php
-		if (isset($item)) {
-			if ($item->active == 1) {
-?>
-                            <input class="form-check-input" type="checkbox" name="active" value="1" checked id="active">
-<?php
-			}
-			else {
-?>
-                            <input class="form-check-input" type="checkbox" name="active" value="1" id="active">
-<?php
-			}
-		}
-		else {
-?>
-                            <input class="form-check-input" type="checkbox" name="active" value="1" checked id="active">
-<?php
-		}
+		$this->renderBlock('textInput', ['id'=>'title','title'=>'Název','placeholder'=>'Zadejte název pozice','value' => isset($item)? $item->title: ''] + $this->params, 'html');
+		$this->renderBlock('textInput', ['id'=>'abbreviation','title'=>'Zkratka','placeholder'=>'Zkratka názvu pozice','value' => isset($item)? $item->abbreviation: ''] + $this->params, 'html');
 ?>
                         
-                        <label class="form-check-label" for="active">
-                            Aktivovat
-                        </label>
-                    </div>
-                </div>
-            </div>
+<?php
+		$this->renderBlock('activeCheckbox', $this->params, 'html');
+?>
         
     </div>
-    <div class="card-footer text-center">
-        <input type="hidden" name="action" value="<?php echo LR\Filters::escapeHtmlAttr($formAction) /* line 45 */ ?>">
-        <?php
-		if (isset($item)) {
-			?><input type="hidden" name="id" value="<?php echo LR\Filters::escapeHtmlAttr($item->id) /* line 46 */ ?>"><?php
-		}
+<?php
+		$this->renderBlock('formSubmit', $this->params, 'html');
 ?>
-
-        <button type="submit" class="btn btn-md btn-primary col-sm-12 col-md-4"><i class="fa fa-plus-circle"></i> Uložit</button>
-    </div>
 </div>
 </form>
 <?php

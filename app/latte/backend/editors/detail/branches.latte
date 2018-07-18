@@ -1,0 +1,26 @@
+{layout '../../@layout.latte'}
+{block content}
+<h2>{$headline}</h2>
+<form action="{$basePath}/{$pathPrefix}/" method="post" class="form-horizontal">
+<div class="card">
+    <div class="card-header">
+        <strong>{ifset $item}Editace, ID: {$item->id}{else}Nový záznam{/ifset}</strong>
+    </div>
+    <div class="card-body">            
+            {include #textInput, id=>'title',title=>'Název',placeholder=>'Zadejte název pobočky',value => isset($item)? $item->title: '' }
+            {include #textInput, id=>'address',title=>'Adresa',placeholder=>'Zadejte adresu pobočky',value => isset($item)? $item->address: '' }
+            {include #textInput, id=>'city',title=>'Město',placeholder=>'Zadejte město',value => isset($item)? $item->city: '' }
+            {* Region *}
+            {include #relatedContent, id=>'region',model=>'Region',title=>'Kraj',default='Vyberte prosím kraj',value=> isset($item)? $item->region: ''}
+            
+            {include #textInput, id=>'phoneNumber',title=>'Telefon',placeholder=>'Zadejte telefonní číslo pobočky',value => isset($item)? $item->phoneNumber: '' }
+            {include #textInput, id=>'email',title=>'Email',placeholder=>'Zadejte název pobočky',value => isset($item)? $item->email: '' }
+
+
+            {include #activeCheckbox}
+        
+    </div>
+    {include #formSubmit}
+</div>
+</form>
+{/block}
