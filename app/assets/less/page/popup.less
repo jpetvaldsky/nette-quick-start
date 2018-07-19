@@ -1,0 +1,59 @@
+// main: ../loader.less
+//
+// Page - Popup
+// =============================================================================
+
+.popupHeadline {
+    pointer-events: all;
+    position: relative;
+    top: 80px;
+    max-width: @container-width;
+    margin: 0 auto;
+    text-align: left;
+    
+    h1 {
+        max-width: 620px;
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 0;
+        font-size: @headline-popup-font-size;
+        line-height: @headline-popup-line-height;
+        font-weight: @font-weight-extrabold;
+        color: @color-white;
+        text-transform: uppercase;
+        text-align: left;
+    }
+
+    h3 {
+        margin: 0;
+        margin-top: -10px;
+        color: @color-white;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .subInfo {
+        position: relative;
+        display: inline-block;
+        background-color: @color-green;
+        color: @color-white;
+        font-size: @content-headline-font-size;
+        font-weight: @font-weight-bold;
+        padding: 5px 10px;
+
+        span {
+            color: @color-yellow;
+        }
+    }
+}
+
+.newsPopup {
+    .author {
+        font-weight: @font-weight-bold;
+        
+        strong {
+            color: @color-orange;
+            font-size: @content-headline-font-size;            
+        }
+    }
+}

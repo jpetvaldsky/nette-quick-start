@@ -1,0 +1,115 @@
+// main: ../loader.less
+//
+// Layout
+// =============================================================================
+
+#container { 
+  pointer-events: none; 
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 100%;  
+
+  .shapeTop {
+    pointer-events: none;
+    position: absolute;
+    top: 605px;
+    width: 100%;
+    height: 225px;
+    background: url('../img/top-shape-mask.png');
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: 100% 100%;
+  }
+
+  .shapeTopPopup {
+    pointer-events: none;
+    position: absolute;
+    top: 235px;
+    width: 100%;
+    height: 225px;
+    background: url('../img/top-shape-mask.png');
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: 100% 100%;
+  }  
+
+  .shapeBottom {
+    pointer-events: none;
+    position: relative;
+    width: 100%;
+    height: 223px;
+    background: url('../img/bottom-shape-mask.png');
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: 100% 100%;
+  }
+
+  .wrapper {
+    pointer-events: none;
+    position: absolute;
+    top: 830px;
+    width: 100%;
+    
+    &.popup {
+      top: 460px;
+    }
+
+    .wrapperBackground {
+      pointer-events: all;
+      position: relative;
+      width: 100%;
+      background-color: @color-white;
+      text-align: center;
+    }
+    padding-bottom: 70px;
+  }
+
+}
+
+.floatingButton { 
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  background-color: @color-black;
+
+  .transition(~"color @{transition-easing}, background-color @{transition-easing}");
+
+  &:hover {
+    background-color: @color-green;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+
+  &.scrollTop {
+    position: fixed;
+    z-index: 100;
+    bottom: 180px;
+  
+    a {
+      background-image: url('../img/ico-scroll-top.png');
+    }
+  }
+
+  &.closePopup {
+    position: absolute;
+    z-index: 101;
+    top: 70px;
+  
+    a {
+      background-image: url('../img/ico-close.png');
+    }
+
+    &:hover {
+      background-color: @color-green;
+    }
+  }
+  
+}

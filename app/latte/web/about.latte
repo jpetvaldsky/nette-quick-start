@@ -1,0 +1,15 @@
+                    <div id="co-je-szif" class="contentBlock about">
+                        <h2>Kdo jsme a co děláme</h2>
+                        
+                        {foreach $about as $item}
+                        <div class="about-article" style="background-image: url({$item->icon|getAttr,'Model\Media','serverPath'});">
+                            <h3 class="about-headline">{$item->headline}</h3>
+                            <div class="about-content">
+                                {$item->content|breaklines|noescape}
+                            </div>
+                        </div><!-- /.about-article -->
+                        {/foreach}
+                        <div class="textCenter scrollTop">
+                            <a href="#top" class="button btn-outline about-cta">Pojďte spolu s námi pomáhat českému zemědělství!</a>                            
+                        </div>
+                    </div>

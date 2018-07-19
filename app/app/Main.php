@@ -1,7 +1,7 @@
 <?php
 
-use Model\Applicant;
-use Model\Service;
+use Model\Media;
+
 use Nette\Mail\Message;
 use Nette\Mail\SendmailMailer;
 use Nette\Utils\FileSystem;
@@ -24,6 +24,25 @@ class Main 	{
 
 		$this->latte = new Latte\Engine;
 		$this->latte->setTempDirectory(ROOT_FOLDER.'/temp');
+
+		$this->latte->addFilter('thumb', function($hash,$width=0,$height=0){			
+			$file = Media::thumbnail($this->connection,$hash,$width,$height);			
+			if ($file != null) {
+				return '<img src="'.$file.'" >';
+			}
+			return '&nbsp;';
+		});
+
+		//GET OBJECT ATTRIBUTE
+		$this->latte->addFilter('getAttr', function($id,$model,$attribute="title") {
+			if ($id != '') {				
+				$data = call_user_func(array($model,'getByID'),$this->connection,$id);
+				if (key_exists($attribute,$data)) {
+					return $data[$attribute];
+				}
+			}
+			return $id;
+		});
 
 
 		$json = file_get_contents(ROOT_FOLDER.'/app/content.json');
@@ -53,9 +72,71 @@ class Main 	{
 		$this->route = $route;
 		$this->template = "homepage";
 
-		switch ($this->route[0]) {			
+		switch ($this->route[0]) {
 			default:
+				$this->getJobsData();
+				$this->getTeamData();
+				$this->getFAQData();
+				$this->getAboutData();
 				break;
+		}
+	}
+
+	private function getJobsData(){
+		$this->pageData["fields"] = Model\Field::getList($this->connection);
+		
+		$this->pageData["watchDog"] = true;
+		$res = $this->connection->query('SELECT * FROM %n WHERE [active] = 1 ORDER BY [publishDate] DESC','content_jobPositions');
+		$data = array();
+		if (count($res) > 0) {
+			$jp = $res->fetchAll();
+			foreach ($jp as $job) {
+				if ($job['hideOnExpire'] == 1) {
+					if (strtotime($job['expireDate']) > time()) {
+						array_push($data,$job);
+					}
+				} else {
+					array_push($data,$job);
+				}
+			}
+		}
+		if (count($data) > 0) {
+			$this->pageData["watchDog"] = false;
+			$this->pageData["jobPositions"] = $data;
+		}
+		
+	}
+
+	private function getTeamData(){
+		$teamMembers = \Model\HRTeam::getList($this->connection);
+		$data = array();
+		foreach ($teamMembers as $item) {		
+			array_push($data,$item);
+		}
+		if (count($data) > 0) {
+			$this->pageData["team"] = $data;
+		}
+	}
+
+	private function getFAQData(){
+		$faqBlocks = \Model\Faq::getList($this->connection);
+		$data = array();
+		foreach ($faqBlocks as $item) {		
+			array_push($data,$item);
+		}
+		if (count($data) > 0) {
+			$this->pageData["faq"] = $data;
+		}
+	}
+
+	private function getAboutData(){
+		$aboutBlocks = \Model\AboutSzif::getList($this->connection);
+		$data = array();
+		foreach ($aboutBlocks as $item) {		
+			array_push($data,$item);
+		}
+		if (count($data) > 0) {
+			$this->pageData["about"] = $data;
 		}
 	}
 

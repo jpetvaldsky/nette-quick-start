@@ -19,6 +19,11 @@ class Api {
 	public function init($route) {
 		$this->output["route"] = $route;
 		switch ($route[1]){
+			case "job-positions":
+				$positions = \Model\Position::getList($this->connection);				
+				$output = $this->parsePositionOutput($positions);
+				exit;
+				break;
 			case  "upload-media":
 				$result = $this->handleUploadFile();
 				if ($result["success"])
@@ -78,5 +83,9 @@ class Api {
 	public function render() {
 		header('Content-Type: application/json');
 		echo json_encode($this->output);
+	}
+
+	private function parsePositionsOutput($data) {
+		
 	}
 }

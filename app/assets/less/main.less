@@ -1,0 +1,38 @@
+// main: loader.less
+//
+// Desktop layout
+// =============================================================================
+
+
+// SZIF Main
+
+html, body {
+  * ::selection {
+    background: @color-primary;
+  }
+
+  font-family: @font-family-base;
+	line-height: @line-height-base;
+	font-weight: @font-weight-regular;
+  
+  color: @color-primary-text;
+	
+	background-color: @color-white;
+
+
+  a {
+    outline: 0;
+  	color: @link-color;
+
+    //.transition(~"color @{transition-easing}");
+
+  	&:hover {
+  		color: @link-color-hover;
+  	}
+  	&:active {
+  		color: @link-color-active;
+  	}
+	}
+
+
+}

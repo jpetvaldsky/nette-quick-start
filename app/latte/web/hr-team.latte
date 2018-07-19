@@ -1,0 +1,28 @@
+                    <div id="nas-hr-tym" class="contentBlock hrTeam">
+                        
+                        <h2>S KÝM SE MŮŽETE POTKAT U POHOVORU</h2>
+
+                        <div class="slider-pro peopleHR" id="hr-team">
+                            <div class="sp-slides">
+                                {foreach $team as $member}
+                                <!-- HR 1 -->
+                                <div class="sp-slide hr-person">
+                                    <div class="inner">
+                                        <div class="hr-person-image">
+                                            {$member->avatar|getAttr,'Model\Media','mediaHash'|thumb,0,205|noescape}
+                                        </div>
+                                        <h3>{$member->fullName}</h3>
+                                        <h4>{$member->position}</h4>
+                                        <p class="hr-about">{$member->content|breaklines}</p>
+                                        <strong>Můj tip pro Vás</strong>
+                                        <p>{$member->motto|breaklines}</p>
+                                        <div class="textCenter" n:if="$member->linkedinURL">
+                                                <a href="{$member->linkedinURL}" target="_blank" class="button btn-outline">Kontaktovat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.hrTeam .contentBlock -->

@@ -1,0 +1,13 @@
+                    <div id="caste-dotazy" class="contentBlock faq">
+                        <h2>Mohly by Vás zajímat</h2>
+                        {foreach $faq as $item}
+                        <div class="faq-article">
+                            <a href="#" class="faq-header">{$item->title|noescape}</a>
+                            <div class="faq-answer">
+                                {$item->content|breaklines|noescape}
+                            </div>
+                        </div><!-- /.faq-article -->
+                        {/foreach}
+                        
+                    </div>
+                    <!-- /.faq .contentBlock -->

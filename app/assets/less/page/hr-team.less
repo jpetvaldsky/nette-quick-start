@@ -1,0 +1,94 @@
+// main: ../loader.less
+//
+// HR Team
+// =============================================================================
+
+.peopleHR {
+    min-height: 550px;
+
+    .hr-person {
+        visibility: hidden;
+        .inner {
+            width: auto;
+            padding: 0px 100px;
+
+            text-align: center;
+        }
+
+        .hr-person-image {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: @hr-team-font-size;
+            font-weight: @font-weight-extrabold;
+            line-height: @hr-team-line-height;
+            color: @color-orange;
+            text-align: center;            
+        }
+
+        h4 {
+            margin-top: 10px;
+            font-size: @content-headline-font-size;
+            font-weight: @font-weight-semibold;
+            line-height: 2rem;
+            text-align: center;
+        }
+        
+        p {
+            font-style: italic;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .textCenter {
+            margin-top: 20px;
+        }
+    }
+}
+
+.sp-horizontal .sp-arrows {
+    margin-top: -200px;
+}
+
+.sp-arrow {
+	position: absolute;
+	display: block;
+	width: 40px;
+	height: 400px;
+    cursor: pointer;
+    background-color: @color-white;
+    background-repeat: no-repeat;
+    background-image: url('../img/slider-arrows.png');
+    opacity: 0.5;
+
+    .transition(~"opacity @{transition-easing}");
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+
+.sp-previous-arrow {
+    left: 0px !important;
+    background-position: 0px 50%;
+}
+
+.sp-next-arrow {
+    right: 0px !important;
+    background-position: 0px 50%;
+}
+
+.sp-previous-arrow:before,
+.sp-previous-arrow:after,
+.sp-next-arrow:before,
+.sp-next-arrow:after {
+	content: '';
+	position: absolute;
+	width: 0px;
+	height: 0px;
+    background-color: transparent;
+    transform: none !important;
+}

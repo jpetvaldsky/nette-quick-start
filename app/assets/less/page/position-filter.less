@@ -1,0 +1,86 @@
+// main: ../loader.less
+//
+// Page - Position Filter
+// =============================================================================
+.positionFilter {
+    pointer-events: all;
+    position: relative;
+    top: 150px;
+    max-width: @container-width;
+    margin: 0 auto;
+    text-align: left;
+    h1 {
+        margin: 0;
+        margin-bottom: 4rem;
+        padding: 0;
+        font-size: @headline-extra-font-size;
+        line-height: @headline-extra-line-height;
+        font-weight: @font-weight-extrabold;
+        color: @color-white;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    h3 {
+        color: @color-white;
+        font-size: @filter-headline-font-size;
+        line-height: @filter-headline-line-height;
+    }
+    .selectGroup {
+        position: relative;        
+        width: 840px;
+        margin: 30px auto;
+        clear: both;
+
+        .selectBox {
+            position: relative;
+            display: block;
+            float: left;
+            width: 410px;
+            margin-left: 10px;
+            &:last-child {
+                margin-left: 0px;
+            }
+
+        }
+    }
+
+    .button {
+        text-transform: uppercase;
+
+        .counter {
+            font-weight: @font-weight-black;
+        }
+    }
+
+    .watchDogInfo {
+        max-width: 520px;
+        margin: 0 auto;
+        color: @color-white;
+        font-size: @dropdown-header-font-size;        
+        font-weight: @font-weight-semibold;
+        line-height: @dropdown-header-line-height;
+
+        a {
+            display: inline-block;
+            min-width: 230px;
+            min-height: 40px;
+            color: @color-yellow;
+            background-color: transparent;
+            
+            font-size: 1rem;
+            font-weight: @font-weight-semibold;
+            line-height: 40px;
+            text-decoration: none;
+            
+            border-radius: 20px;
+            border: 2px solid @color-yellow;
+
+            .transition(~"color @{transition-easing}, background-color @{transition-easing}");
+            
+            &:hover {
+                background-color: @color-yellow;
+                color: @color-green;
+            }
+        }
+    }
+}

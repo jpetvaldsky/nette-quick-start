@@ -1,0 +1,39 @@
+        <div class="positionFilter">
+            <h1>{$json->application->positionFilter->headline|noescape}</h1>
+            <form>
+                <h3 class="textCenter">{$json->application->positionFilter->subHeadline|noescape}</h3>
+                <div class="selectGroup">
+                    {ifset $fields}
+                    <div class="selectBox selectCategory">
+                        <select name="category" id="filterCategory"  data-placeholder="{$json->application->positionFilter->filterFieldLabel}" placeholder="{$json->application->positionFilter->filterFieldLabel}" class="select2 jobFilter" multiple="multiple">
+                            <optgroup label="{$json->application->positionFilter->filterFieldLabel}">
+                                {foreach $fields as $item}
+                                <option value="{$item->id}">{$item->optionalTitle}</option>
+                                {/foreach}
+                            </optgroup>
+                        </select>
+                    </div>
+                    {/ifset}
+                    {ifset $filterLocation}
+                    <div class="selectBox selectLocation">
+                        <select name="location" id="filterLocation" data-placeholder="{$json->application->positionFilter->filterLocationLabel}" placeholder="{$json->application->positionFilter->filterLocationLabel}" class="select2 jobFilter" multiple="multiple">
+                            <optgroup label="{$json->application->positionFilter->filterLocationLabel}">
+                                {foreach $filterLocations as $location}
+                                <option value="Moravskoslezský kraj">v Moravskoslezském kraji</option>
+                                {/foreach}
+                                
+                            </optgroup>
+                        </select>
+                    </div>
+                    {/ifset}
+                    <div class="clearfix"></div>
+                </div>
+                <div class="textCenter aScroll">
+                    <a href="#volna-mista" type="submit" id="positionResult" class="button btn-large">{$json->application->positionFilter->showLabel} <span class="counter">{count($jobPositions)}</span> volných pozic</a>
+                    <div id="noJobResult" class="watchDogInfo hidden">
+                            <p>{$json->application->positionFilter->watchDogText|noescape}</p>
+                            <a href="#hlidaci-pes">{$json->application->positionFilter->watchDogButton|noescape}</a>
+                    </div>
+                </div>
+            </form>
+        </div>

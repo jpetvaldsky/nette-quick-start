@@ -1,0 +1,72 @@
+// main: loader.less
+//
+// Base
+// =============================================================================
+
+
+// Normalize rest of elements
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, hr, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, fieldset, form, label, input, button, select, textarea, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	list-style: none;
+}
+
+// Layout
+* {
+	.box-sizing;
+}
+
+html ::selection, body ::selection {
+	background: @color-primary;
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+	font-size: @font-size-default;
+	.htmlFontSize();	
+}
+
+table {
+	max-width: 100%;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+.clearfix {
+	.clearfix();
+}
+.show {
+	.show();
+}
+.hidden {
+	.hidden();
+}
+.invissible {
+	.invisible();
+}
+
+.fl {
+	.fl();
+}
+.fr {
+	.fr();
+}
+.center-block {
+	.center-block();
+}
+.textLeft {
+	text-align: left !important;
+}
+.textRight {
+	text-align: right !important;
+}
+.textCenter {
+	text-align: center !important;
+}
+
+.offset-no { margin-bottom: 0 !important; }
+.uppercase { text-transform: uppercase; }

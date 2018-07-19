@@ -42,6 +42,7 @@ class Template1ef20fbc26 extends Latte\Runtime\Template
 
 
     <script src="/assets/vendors/js/jquery.min.js"></script>
+    <script src="/assets/vendors/js/jquery-ui.min.js"></script>
     <script src="/assets/vendors/js/jquery.sliderPro.min.js"></script>
     <script src="/assets/vendors/js/select2.min.js"></script>
     <script src="/assets/vendors/js/showdown.min.js"></script>

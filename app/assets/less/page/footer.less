@@ -1,0 +1,71 @@
+// main: ../loader.less
+//
+// Page - footer
+// =============================================================================
+
+#footer {
+    background-color: @color-green;
+    position: fixed;
+    z-index: 1;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 295px;
+    text-align: center;
+
+    .content {
+        position: relative;
+        top: 140px;
+        max-width: @container-width;
+        margin: 0 auto;
+        text-align: left;
+
+        .logo {
+            display: block;
+            width: 142px;
+            height: 41px;
+
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .footerText {
+            margin-top: 1.5rem;
+            font-size: @footer-text-font-size;
+            font-weight: @font-weight-regular;
+            line-height: @footer-text-line-height;
+            color: @color-white;
+
+            a {
+                color: @color-white;
+                text-decoration: underline;
+
+                &:hover {
+                    color: @color-yellow;
+                    text-decoration: none;
+                }
+            }
+            
+            p {
+                margin: 0;
+                padding: 0;
+            }
+
+            .copyright, strong {
+                font-weight: @font-weight-semibold;
+            }
+
+            .splitter {
+                color: @color-yellow;
+                font-weight: @font-weight-black;
+            }
+        }
+    }
+}

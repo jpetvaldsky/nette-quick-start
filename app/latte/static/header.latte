@@ -1,16 +1,18 @@
     <header id="header">
-        <div class="headerBackground bg-default"></div>
+        <div class="headerBackground bg-default"></div>        
+    </header>
+    <div id="menu">
         <div class="inner">
             <div class="logo">
-                <a href="http://www.szif.cz"><img src="/assets/img/logo-color@2x.png"></a>
+                <a href="/"><img src="/assets/img/logo-color@2x.png"></a>
             </div>
             <div class="topMenu">
                 <ul>
-                    <li><a href="#nas-hr-tym">Náš HR tým</a></li>
-                    <li><a href="#novinky">NOVINKY</a></li>
-                    <li><a href="#caste-dotazy">Částé dotazy</a></li>
-                    <li><a href="#co-je-szif">Co je SZIF</a></li>
+                    {ifset $team}<li><a href="#nas-hr-tym">Náš HR tým</a></li>{/ifset}
+                    {ifset $news}<li><a href="#novinky">NOVINKY</a></li>{/ifset}
+                    {ifset $faq}<li><a href="#caste-dotazy">Částé dotazy</a></li>{/ifset}
+                    {ifset $about}<li><a href="#co-je-szif">Co je SZIF</a></li>{/ifset}
                 </ul>
             </div>
         </div>
-    </header>
+    </div>

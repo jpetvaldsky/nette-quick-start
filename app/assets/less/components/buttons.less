@@ -1,0 +1,167 @@
+// main: ../loader.less
+//
+// Buttons
+// =============================================================================
+
+.content a {
+  .transition(~"color @{transition-easing}, background-color @{transition-easing}");
+}
+
+.button {
+  display: inline-block;
+  min-width: @button-min-width;
+  min-height: @button-regular-height;
+  padding: 5px 20px;
+  border: 1px solid transparent;
+  border-radius: @button-border-radius;
+
+  font-weight: @button-font-weight;
+  text-align: center;
+  text-decoration: none;
+
+  .transition(~"color @{transition-easing}, background-color @{transition-easing}");
+
+  &.btn-large {
+    width: 500px;
+    height: 80px;
+    padding: 0px;
+    border-radius: @button-border-radius-large;
+    font-size: @button-large-font-size;
+    font-weight: @font-weight-semibold;
+    line-height: @button-large-line-height;;
+    background-color: @color-yellow;
+    color: @color-green;
+
+    &:hover {
+      background-color: @color-white;
+    }
+
+    &:disabled {
+      background-color: @color-gray-light;
+      color: @color-gray;
+
+      &:hover {
+        background-color: @color-gray-light;
+        color: @color-gray;
+      }
+    }
+  }
+
+  &.btn-extra {
+    font-weight: @font-weight-extrabold;
+    text-transform: uppercase;
+  }
+
+  &.btn-outline {
+    min-width: 230px;
+    padding: 7px 20px 6px 20px;
+    border: 2px solid @color-brown;
+    background-color: @color-white;
+    color: @color-brown;
+    font-weight: @font-weight-semibold;
+
+    &:hover {
+      color: @color-white;
+      background-color: @color-brown;
+    }
+  }
+
+
+}
+
+// FAQ PLUS ICON
+
+.plusIcon {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+  
+
+  &::before, &::after {
+    position: absolute;
+    left: 10px;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: @color-blue;
+    .transition(~"transform @{transition-easing}, background-color @{transition-easing}");
+  }
+  
+  &::before {
+    transform: rotate(0deg);
+  }
+  &::after {
+    transform: rotate(90deg);
+  }
+
+  &:hover {
+
+    &::before, &::after {
+      background-color: @color-black;
+    }
+   
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(135deg);
+    }
+  }
+}
+
+.faq-header {
+  .plusIcon {
+    top: 1px;
+  }
+}
+
+.opened, .faq-header:hover {
+  .plusIcon {
+    &::before, &::after {
+      background-color: @color-black;
+    }
+  
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(135deg);
+    }
+  }
+}
+
+.closeIcon {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 14px;
+  height: 14px;
+  opacity: 1;
+  
+
+  &::before, &::after {
+    position: absolute;
+    left: 7px;
+    content: ' ';
+    height: 14px;
+    width: 1px;
+    background-color: @color-brown;
+    .transition(~"transform @{transition-easing}, background-color @{transition-easing}");
+  }
+  
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(135deg);
+  }
+
+  &:hover {
+    &::before, &::after {
+      background-color: @color-black;
+    }
+  }
+}
