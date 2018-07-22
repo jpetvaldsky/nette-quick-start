@@ -26,7 +26,7 @@
             <td>{$item->id}</td>
             <td><strong>{$item->title|truncate,30,'…'}</strong></td>
             <td>{$item->subtitle|truncate,30,'…'}</td>
-            <td>{$item->field|getAttr,"Model\Region","title"}</td>
+            <td>{$item->field|getAttr,"Model\Field","title"}</td>
             <td>{$item->branch|getAttr,"Model\Branch","title"}</td>
             <td>{$item->salary|truncate,30,'…'}</td>
             <td>{$item->publishDate|date:'j. n. Y'}</td>

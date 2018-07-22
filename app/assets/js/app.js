@@ -91,7 +91,7 @@ function checkScrollPosition(obj){
     var sTop = $(obj).scrollTop();
     positionFloating();
 
-    if (sTop > 700) {
+    if (sTop > 600) {
         if (!$("#menu").hasClass('withBackground')) {
             $("#menu").addClass('withBackground');
         }        
