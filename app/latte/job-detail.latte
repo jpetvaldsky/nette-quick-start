@@ -1,0 +1,89 @@
+{layout '@layout-popup.latte'}
+
+{block content}
+    <header id="header" class="popup">
+        <div class="headerBackground popup"></div>
+    </header>
+    <div id="container">
+        <div class="maskShape shapeTopPopup"></div>
+        <div class="popupHeadline">
+            <h1 data-value="name">{$jobItem->subtitle|upper}</h1>
+            <h3 data-value="title" data-parser="uppercase" n:if="$jobItem->subtitle">{$jobItem->title}</h3>
+            <div class="subInfo"><span data-value="location" data-parser="uppercase">{$jobItem->branch|getAttr,"Model\Branch","city"|upper}</span> <span>/</span> <span data-value="jobtype" data-parser="uppercase">{$jobItem->type|getAttr,"Model\PositionType","title"|upper}</span> <span>/</span><br><span data-value="salary" data-parser="uppercase" data-suffix=".PT">{$jobItem->salary|upper}</span></div>
+        </div>
+        <div class="wrapper popup">
+            <div class="wrapperBackground">
+                <div class="content">
+                    <div id="popis-prace" class="contentBlock positionPopup">
+                        <h2>ČÍM SE BUDETE ZABÝVAT</h2>
+                        {$jobItem->content|parsedown|noescape}
+                        <div n:if="$jobItem->requirements">
+                        <br>
+                        <h3>Co požadujeme?</h3>
+                        {$jobItem->requirements|parsedown|noescape}
+                        </div>
+                    </div>
+                    <!-- /.positionPopup .contentBlock -->
+                    {if count($benefits) > 0}
+                    <div id="benefity" class="contentBlock benefits">
+                        <h2>CO U NÁS ZÍSKÁTE</h2>
+                        <div class="benefitList clearfix">
+                        {foreach $benefits as $item}
+                            <div class="benefitItem" style="background-image: url({$item->icon|getAttr,"Model\Media","serverPath"});">
+                                <h4>{$item->title}</h4>
+                                <p>{$item->content|breaklines|noescape}</p>
+                            </div>
+                        {/foreach}
+                        </div>
+                    </div>
+                    <!-- /.benefits .contentBlock -->
+                    {/if}
+                    <div id="vas-nadrizeny" class="contentBlock hrTeam" n:if="$recruiter">
+                        <h2>KDO BUDE VAŠ NADŘÍZENÝ</h2>
+                        <div class="peopleHR">
+                            <div class="hr-person" style="visibility: visible !important;">
+                                <div class="inner">
+                                    <div class="hr-person-image">
+                                        {$recruiter->avatar|getAttr,'Model\Media','mediaHash'|thumb,0,205|noescape}
+                                    </div>
+                                    <h3>{$recruiter->fullName}</h3>
+                                    <h4>{$recruiter->position}</h4>
+                                    <br>
+                                    <p class="hr-about">{$recruiter->content|breaklines}</p>
+                                    <strong>Můj tip pro Vás</strong>
+                                    <p>{$recruiter->motto|breaklines}</p>
+                                    <div class="textCenter">
+                                            <a href="{$recruiter->linkedinURL}" target="_blank" class="button btn-outline">Můj LinkedIn profil</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.hrTeam .contentBlock -->
+                    
+                    <div id="lokace" class="contentBlock hidden">
+                        <h2>VAŠE ŽIDLE BUDE</h2>
+                    </div>
+
+                    <div id="mam-zajem" class="contentBlock">
+                        <h2>LÍBÍ SE VÁM TATO POZICE?</h2>
+                        <p class="textCenter applyDate">Tak si rychle podejte přihlášku, uzávěrka přihlášek je už <strong data-value="dateExpire">{$jobItem->expireDate|date,"j. n. Y"}</strong>.</p><br>
+                        
+                        <div class="textCenter applyButton">                        
+                            <a href="#" data-value="szif-url" data-location="href" target="_blank" class="button btn-large btn-extra">ANO, mám zájem</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="maskShape shapeBottom"></div>
+        </div>
+        
+    </div>
+
+
+    <div class="floatingButton closePopup">
+        <a href="/"></a>
+    </div>
+
+{/block}
+

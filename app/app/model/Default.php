@@ -56,6 +56,16 @@ class DefaultModel {
         }
         return false;
 	}
+
+	public static function getAttr($db,$id,$attribute="title") {
+		if ($id != '') {
+			$data = self::getByID($db,$id);
+			if (key_exists($attribute,$data)) {
+				return $data[$attribute];
+			}
+		}
+		return $id;
+	}
 	
 	public static function getByID($db,$id) {
         $res = $db->query('SELECT * FROM %n WHERE [id] = %i',static::$table,$id);

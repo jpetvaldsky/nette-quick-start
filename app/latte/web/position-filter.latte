@@ -8,18 +8,18 @@
                         <select name="category" id="filterCategory"  data-placeholder="{$json->application->positionFilter->filterFieldLabel}" placeholder="{$json->application->positionFilter->filterFieldLabel}" class="select2 jobFilter" multiple="multiple">
                             <optgroup label="{$json->application->positionFilter->filterFieldLabel}">
                                 {foreach $fields as $item}
-                                <option value="{$item->id}">{$item->optionalTitle}</option>
+                                <option value="{$item->id}">{$item->title}</option>
                                 {/foreach}
                             </optgroup>
                         </select>
                     </div>
                     {/ifset}
-                    {ifset $filterLocation}
+                    {ifset $locations}
                     <div class="selectBox selectLocation">
                         <select name="location" id="filterLocation" data-placeholder="{$json->application->positionFilter->filterLocationLabel}" placeholder="{$json->application->positionFilter->filterLocationLabel}" class="select2 jobFilter" multiple="multiple">
                             <optgroup label="{$json->application->positionFilter->filterLocationLabel}">
-                                {foreach $filterLocations as $location}
-                                <option value="Moravskoslezský kraj">v Moravskoslezském kraji</option>
+                                {foreach $locations as $location}
+                                <option value="{$location->id}">{$location->title}</option>
                                 {/foreach}
                                 
                             </optgroup>

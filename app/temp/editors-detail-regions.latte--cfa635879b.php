@@ -50,26 +50,14 @@ class Templatecfa635879b extends Latte\Runtime\Template
 ?></strong>
     </div>
     <div class="card-body">
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="title">Název</label>
-                <div class="col-md-9">
-                    <input type="text" id="title" name="title" value="<?php
-		if (isset($item)) {
-			echo LR\Filters::escapeHtmlAttr($item->title) /* line 13 */;
-		}
-?>" class="form-control" placeholder="Zadejte název kraje">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="mapClass">Ikona mapy</label>
-                <div class="col-md-9">
-                    <input type="text" id="mapClass" name="mapClass" value="<?php
-		if (isset($item)) {
-			echo LR\Filters::escapeHtmlAttr($item->mapClass) /* line 19 */;
-		}
-?>" class="form-control" placeholder="ID ikony">
-                </div>
-            </div>            
+<?php
+		$this->renderBlock('textInput', ['id'=>'title','title'=>'Název','placeholder'=>'Zadejte název kraje','value' => isset($item)? $item->title: ''] + $this->params, 'html');
+?>
+            
+<?php
+		$this->renderBlock('textInput', ['id'=>'mapClass','title'=>'Ikona mapy','placeholder'=>'ID ikony','value' => isset($item)? $item->mapClass: ''] + $this->params, 'html');
+?>
+            
 <?php
 		$this->renderBlock('activeCheckbox', $this->params, 'html');
 ?>

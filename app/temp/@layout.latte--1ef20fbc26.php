@@ -26,7 +26,7 @@ class Template1ef20fbc26 extends Latte\Runtime\Template
 		/* line 13 */
 		$this->createTemplate('static/header.latte', $this->params, "include")->renderToContentType('html');
 ?>
-    <div id="container">        
+    <div id="container">
 <?php
 		$this->renderBlock('content', $this->params, 'html');
 ?>

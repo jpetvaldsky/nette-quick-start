@@ -39,12 +39,14 @@ function initSearchFilter(){
     $.getJSON( "/api/job-positions", function( data ) {
         positionData  = data;
         filterResult  = positionData.positions;
-        //$('#positionResult .counter').text(filterResult.length);
-        changePositionListing(filterResult);
+        console.log(filterResult);
+        
+        $('#positionResult .counter').text(filterResult.length);
+        //changePositionListing(filterResult);
     });
 }
 
-function searchPositions() {
+function searchPositions() {    
     filterResult = positionData.positions;
     $('#positionResult .counter').text(filterResult.length);
 
@@ -54,36 +56,30 @@ function searchPositions() {
 
     if ($('#filterCategory').select2('data').length > 0) {
         $('#filterCategory').select2('data').forEach(element => {            
-            catIds.push($.inArray(element.id,positionData.categories));            
+            catIds.push(element.id);
         }); 
     }
 
     if ($('#filterLocation').select2('data').length > 0) {
         $('#filterLocation').select2('data').forEach(selection => {            
-            locIds.push($.inArray(selection.id,positionData.locations));
+            locIds.push(selection.id);
         }); 
     }
-
+    
     if (locIds.length > 0  || catIds.length > 0) {
-        console.log("Selection Categories",catIds);
-        console.log("Selection Location",locIds);
+        
         filterResult = [];
-        positionData.positions.forEach(pos => {            
+        positionData.positions.forEach(pos => {
             fitSelection = true;
-            if (catIds.length > 0) {
+            if (catIds.length > 0) {                
                 if ($.inArray(pos.cat,catIds) === -1) fitSelection = false;
-            }
-            console.log(fitSelection);
+            }            
             if (locIds.length > 0) {
-                console.log(pos.loc,$.inArray(pos.loc,locIds));
-                
                 if ($.inArray(pos.loc,locIds) === -1) fitSelection = false;
-                console.log(fitSelection);
             }
             if (fitSelection) filterResult.push(pos);
         });
     }
-    
     changePositionListing(filterResult);
 }
 
@@ -97,7 +93,7 @@ function changePositionListing(data) {
         if ($('#noJobResult').hasClass('hidden')) {
             $('#noJobResult').hide().removeClass('hidden').fadeIn(200);
         }
-        initWatchDog();
+        initWatchDog(data);
     } else {
         $('#positionResult .counter').text(data.length);
         
@@ -126,13 +122,13 @@ function changePositionListing(data) {
     }
 }
 
-function initWatchDog(){    
+function initWatchDog(data){    
     if ($('#filterCategory').select2('data').length > 0) {
         $('.watchDog .selectedCategories .selectedItems').removeClass('empty');
         $('.watchDog .selectedCategories .selectedItems').html('');
         $('#filterCategory').select2('data').forEach(selection => {
             $('.watchDog .selectedCategories .selectedItems').append(
-                $('<a/>',{href:'#'}).append('<div class="closeIcon"></div>').append(selection.id)
+                $('<a/>',{href:'#'}).append('<div class="closeIcon"></div>').append(positionData.categories[selection.id])
             );
         });
     } else {
@@ -144,7 +140,7 @@ function initWatchDog(){
         $('.watchDog .selectedLocations .selectedItems').html('');
         $('#filterLocation').select2('data').forEach(selection => {            
             $('.watchDog .selectedLocations .selectedItems').append(
-                $('<a/>',{href:'#'}).append('<div class="closeIcon"></div>').append(selection.id)
+                $('<a/>',{href:'#'}).append('<div class="closeIcon"></div>').append(positionData.locations[selection.id])
             );
         });
     } else {
@@ -169,13 +165,13 @@ function followMouse(obj){
 function drawPositionItem(item,index,arr) {
     //console.log(index,item);
     var positionLink = $('<a/>',{
-        href: "detail-pozice.html#"+index,
+        href: item.localLink,
         text: item.name
     });
     var posItem = $('<tr/>').append(
         $('<td/>',{class:'positionLink'}).append(positionLink)
     ).append(
-        $('<td/>',{class:'location districtMap district'+item.loc}).append('<span>'+item.location+'</span>')
+        $('<td/>',{class:'location districtMap '+item.regionMap}).append('<span>'+item.regionTitle+'</span>')
     ).append(
         $('<td/>',{class:'date'}).append('<span>'+item.dateAdded+'</span>')
     ).append(

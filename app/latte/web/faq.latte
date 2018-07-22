@@ -4,7 +4,7 @@
                         <div class="faq-article">
                             <a href="#" class="faq-header">{$item->title|noescape}</a>
                             <div class="faq-answer">
-                                {$item->content|breaklines|noescape}
+                                {$item->content|parsedown|noescape}
                             </div>
                         </div><!-- /.faq-article -->
                         {/foreach}

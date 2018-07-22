@@ -2,6 +2,7 @@
 
 use Model\Media;
 use Tracy\Debugger;
+use Nette\Utils\Strings;
 
 class Api {
 
@@ -25,7 +26,7 @@ class Api {
 		switch ($route[1]){
 			case "job-positions":
 				$positions = \Model\Position::getList($this->connection);				
-				$output = $this->parsePositionOutput($positions);
+				$this->parsePositionOutput($positions);
 				break;
 			case  "upload-media":
 				$result = $this->handleUploadFile();
@@ -117,7 +118,51 @@ class Api {
 	}
 
 	private function parsePositionOutput($data) {
+
+		$res = $this->connection->query('SELECT * FROM %n WHERE [active] = 1 ORDER BY [publishDate] DESC','content_jobPositions');
+		$data = array();
+		if (count($res) > 0) {
+			$positions = $res->fetchAll();
+			foreach ($positions as $job) {
+				if ($job['hideOnExpire'] == 1) {
+					if (strtotime($job['expireDate']) > time()) {
+						array_push($data,$this->parseJobData($job));
+					}
+				} else {
+					array_push($data,$this->parseJobData($job));
+				}
+			}
+		}
+		
+		$categories = Model\Field::getList($this->connection);		
+		$this->output["categories"] = array();
+		foreach ($categories as $c) {			
+			$this->output["categories"][$c["id"]] = $c["title"];
+		}
+
+		
+		$locations = Model\Region::getList($this->connection);
+		$this->output["locations"] = array();
+		foreach ($locations as $loc) {
+			$this->output["locations"][$loc["id"]] = $loc["title"];
+		}
+
+		$this->output["positions"] = $data;
 		return '';
+	}
+
+	private function parseJobData($d) {
+		$data = array();
+		$data["id"] = $d["id"];
+		$data["name"] = $d["title"];
+		$data["localLink"] = '/detail-pozice/'.$d["id"].'-'.Strings::Webalize($d["title"]);				
+		$data["dateAdded"] = date('j.n.Y',strtotime($d["publishDate"]));
+		$data["dateExpire"] = date('j.n.Y',strtotime($d["expireDate"]));				
+		$data["cat"] = $d["field"]."";
+		$data["loc"] = \Model\Branch::getAttr($this->connection,$d["branch"],'region')."";
+		$data["regionTitle"] = \Model\Region::getAttr($this->connection,$data["loc"],'title');
+		$data["regionMap"] = \Model\Region::getAttr($this->connection,$data["loc"],'mapClass');
+		return $data;
 	}
 
 	private function logValues($v){

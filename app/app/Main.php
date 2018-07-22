@@ -27,6 +27,7 @@ class Main 	{
 
 		$this->latte->addFilter('parsedown',function($input){
 			$Parsedown = new Parsedown();
+			$Parsedown->setUrlsLinked(false);
 			return $Parsedown->text($input);
 		});		
 
@@ -59,8 +60,7 @@ class Main 	{
 		} else {
 			//Debugger::barDump($this->content);
 		}
-
-		Debugger::barDump($_SESSION);
+		
 
 		$this->pageData = array(
 			'flashes' => array(),
@@ -81,17 +81,46 @@ class Main 	{
 			case "novinka":
 				$newsDetail = false;
 				if (count($this->route) > 1) {
-					$newsRouteParam = explode("-",$this->route[1]);					
-					if (Model\News::check($this->connection,$newsRouteParam[0])) {
-						$this->pageData["newsItem"] = Model\News::getByID($this->connection,$newsRouteParam[0]);
+					$routeParam = explode("-",$this->route[1]);					
+					if (Model\News::check($this->connection,$routeParam[0])) {
+						$newsDetail = true;
+						$this->pageData["newsItem"] = Model\News::getByID($this->connection,$routeParam[0]);
 						$this->template = "news";
 					}
 				}
 				if (!$newsDetail) {
 					$this->initHomepage();
 				}
-				break;
+				break;			
 			case "detail-pozice":
+				$jobDetail = false;
+				if (count($this->route) > 1) {
+					$routeParam = explode("-",$this->route[1]);					
+					if (Model\Position::check($this->connection,$routeParam[0])) {
+						$jobDetail = true;
+						$this->pageData["jobItem"] = Model\Position::getByID($this->connection,$routeParam[0]);
+						$rb = $this->connection->query("SELECT * FROM [content_benefits] WHERE [active] = %i ORDER BY [order] ASC",1);
+						if ($rb) {
+							$this->pageData["benefits"] = $rb->fetchAll();
+						}
+						if ($this->pageData["jobItem"]["hrRandom"] == 1) {
+							$hrPeople = Model\HRTeam::getList($this->connection);
+							$randIndex = rand (0, count($hrPeople)-1);
+							$this->pageData["recruiter"] = $hrPeople[$randIndex];
+						} else {
+							if ($this->pageData["jobItem"]["hrPersona"] != null) {
+								if (Model\HRTeam::check($this->connection,$this->pageData["jobItem"]["hrPersona"])) {
+									$this->pageData["recruiter"] = 	Model\HRTeam::getByID($this->connection,$this->pageData["jobItem"]["hrPersona"]);
+								}
+							}							
+						}						
+						$this->template = "job-detail";
+					}
+				}
+				if (!$jobDetail) {
+					$this->initHomepage();
+				}
+				break;	
 				break;
 			default:
 				$this->initHomepage();
@@ -109,6 +138,7 @@ class Main 	{
 
 	private function getJobsData(){
 		$this->pageData["fields"] = Model\Field::getList($this->connection);
+		$this->pageData["locations"] = Model\Region::getList($this->connection);
 		
 		$this->pageData["watchDog"] = true;
 		$res = $this->connection->query('SELECT * FROM %n WHERE [active] = 1 ORDER BY [publishDate] DESC','content_jobPositions');
