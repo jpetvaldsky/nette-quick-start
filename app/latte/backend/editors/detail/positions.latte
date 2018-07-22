@@ -14,8 +14,8 @@
 
             {include #relatedContent, id=>'branch',model=>'Model\Branch',title=>'Pobočka',defaultOption=>'Vyberte prosím pobočku',value=> isset($item)? $item->branch: ''}
 
-            {include #textInput, id=>'publishDate',title=>'Datum zveřejnění',placeholder=>'DD.MM.RRRR',value => isset($item)? ($item->publishDate|date:'j. n. Y'): '' }
-            {include #textInput, id=>'expireDate',title=>'Datum expirace',placeholder=>'DD.MM.RRRR',value => isset($item)? ($item->expireDate|date:'j. n. Y'): '' }
+            {include #textInput, id=>'publishDate',title=>'Datum zveřejnění',placeholder=>'DD.MM.RRRR',value => isset($item)? ($item->publishDate|date:'j.n.Y'): '' }
+            {include #textInput, id=>'expireDate',title=>'Datum expirace',placeholder=>'DD.MM.RRRR',value => isset($item)? ($item->expireDate|date:'j.n.Y'): '' }
             {include #fieldCheckbox, id=>'hideOnExpire',title=>'Skrýt po expirace',value => isset($item)? $item->hideOnExpire: ''}
 
             {include #relatedContent, id=>'type',model=>'Model\PositionType',title=>'Typ pracovní pozice',defaultOption=>'Vyberte prosím',value=> isset($item)? $item->type: ''}

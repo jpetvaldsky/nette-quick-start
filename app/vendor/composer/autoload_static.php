@@ -11,6 +11,16 @@ class ComposerStaticInit33df150aced094a0dbbff4d48a69cfa0
         '0097ca414fcb37c7130ac24b05f485f8' => __DIR__ . '/..' . '/dibi/dibi/src/loader.php',
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Parsedown' => 
+            array (
+                0 => __DIR__ . '/..' . '/erusev/parsedown',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Dibi\\Bridges\\Nette\\DibiExtension22' => __DIR__ . '/..' . '/dibi/dibi/src/Dibi/Bridges/Nette/DibiExtension22.php',
         'Dibi\\Bridges\\Tracy\\Panel' => __DIR__ . '/..' . '/dibi/dibi/src/Dibi/Bridges/Tracy/Panel.php',
@@ -201,6 +211,7 @@ class ComposerStaticInit33df150aced094a0dbbff4d48a69cfa0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixesPsr0 = ComposerStaticInit33df150aced094a0dbbff4d48a69cfa0::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit33df150aced094a0dbbff4d48a69cfa0::$classMap;
 
         }, null, ClassLoader::class);

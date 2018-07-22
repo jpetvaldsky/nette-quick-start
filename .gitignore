@@ -3,4 +3,5 @@ app/upload/
 app/thumbnails/
 app/temp/
 app/log/
+app/vendor/
 szif-nette-app.code-workspace

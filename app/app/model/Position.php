@@ -45,12 +45,12 @@ class Position extends DefaultModel {
        
         $pDate = null;
         if ($formData["publishDate"] != ''){
-            $pDate = \DateTime::createFromFormat('j. n. Y', $formData["publishDate"])->format('Y-m-d');            
+            $pDate = \DateTime::createFromFormat('j.n.Y', $formData["publishDate"])->format('Y-m-d');            
         }
         
         $eDate = null;
         if ($formData["expireDate"] != ''){
-            $eDate = \DateTime::createFromFormat('j. n. Y', $formData["expireDate"])->format('Y-m-d');
+            $eDate = \DateTime::createFromFormat('j.n.Y', $formData["expireDate"])->format('Y-m-d');
         }
 
         $values = array(
@@ -94,12 +94,12 @@ class Position extends DefaultModel {
 
         $pDate = null;
         if ($formData["publishDate"] != ''){
-            $pDate = \DateTime::createFromFormat('j. n. Y', $formData["publishDate"])->format('Y-m-d');            
+            $pDate = \DateTime::createFromFormat('j.n.Y', $formData["publishDate"])->format('Y-m-d');            
         }
         
         $eDate = null;
         if ($formData["expireDate"] != ''){
-            $eDate = \DateTime::createFromFormat('j. n. Y', $formData["expireDate"])->format('Y-m-d');
+            $eDate = \DateTime::createFromFormat('j.n.Y', $formData["expireDate"])->format('Y-m-d');
         }
         
         

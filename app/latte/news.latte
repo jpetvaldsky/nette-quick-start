@@ -1,0 +1,33 @@
+{layout '@layout-popup.latte'}
+
+{block content}
+    <header id="header" class="popup">
+        <div class="headerBackground popup" {ifset $newsItem->background}style="background-image: url({$newsItem->background|getAttr,'Model\Media','serverPath'}) !important;"{/ifset}></div>
+    </header>
+    <div id="container">
+        <div class="maskShape shapeTopPopup"></div>
+        <div class="popupHeadline">
+            <h1>{$newsItem->title}</h1>
+            <div class="subInfo">{ifset $newsItem->location}{$newsItem->location}, {/ifset}{$newsItem->publishDate|date,"j. n. Y"}</div>
+        </div>
+        <div class="wrapper popup">
+            <div class="wrapperBackground">
+                <div class="content">
+                    <div id="popup" class="contentBlock newsPopup">
+                        {ifset $newsItem->perex}<p>{$newsItem->perex|breaklines|noescape}</p>{/ifset}
+                        {ifset $newsItem->content}<p>{$newsItem->content|parsedown|noescape}</p>{/ifset}
+                        <p class="author"><strong>{$newsItem->author}</strong><br>{$newsItem->authorPosition}</p>
+                    </div>
+                    <!-- /.newsPopup .contentBlock -->
+                </div>
+            </div>
+            <div class="maskShape shapeBottom"></div>
+        </div>
+        
+    </div>
+    <div class="floatingButton closePopup">
+        <a href="/"></a>
+    </div>
+
+{/block}
+

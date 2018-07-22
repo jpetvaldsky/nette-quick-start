@@ -85,6 +85,15 @@ jQuery( document ).ready(function( $ ) {
     $('#news-detail').hide().removeClass('hidden').fadeIn(200);        
     positionFloating();
     checkScrollPosition($(window));
+
+    $('.districtMap').on('mouseover',function(){
+        $(this).find('span').show();
+        followMouse(this)
+    });
+
+    $('.districtMap').on('mouseout',function(){
+        $(this).find('span').hide();
+    });
 });
 
 function checkScrollPosition(obj){

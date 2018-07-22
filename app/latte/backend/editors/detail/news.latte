@@ -1,0 +1,29 @@
+{layout '../../@layout.latte'}
+{block content}
+<h2>{$headline}</h2>
+<form action="{$basePath}/{$pathPrefix}/" method="post" class="form-horizontal">
+<div class="card">
+    <div class="card-header">
+        <strong>{ifset $item}Editace, ID: {$item->id}{else}Nový záznam{/ifset}</strong>
+    </div>
+    <div class="card-body">
+            {include #textInput, id=>'title',title=>'Nadpis',placeholder=>'Zadejte nadpis',value => isset($item)? $item->title: '' }
+            {include #textInput, id=>'location',title=>'Lokalita',placeholder=>'',value => isset($item)? ($item->location): '' }
+            {include #textInput, id=>'publishDate',title=>'Datum zveřejnění',placeholder=>'DD.MM.RRRR',value => isset($item)? ($item->publishDate|date:'j.n.Y'): '' }
+
+            {include #textArea, id=>'perex',title=>'Perex',placeholder=>'Text perexu ...',value => isset($item)? $item->perex: '', rows => 3 }
+            {include #textArea, id=>'content',title=>'Obsah',placeholder=>'Text obsahu ...',value => isset($item)? $item->content: '', rows => 6 }
+
+            {include #textInput, id=>'author',title=>'Autor',placeholder=>'Autor novinky',value => isset($item)? $item->author: '' }
+            {include #textInput, id=>'authorPosition',title=>'Funkce, pozice autora',placeholder=>'Zadejte funkci, pozici autora',value => isset($item)? $item->authorPosition: '' }
+
+            {include #relatedContent, id=>'thumbnail',model=>'Model\Media',title=>'Obrázek',defaultOption=>'Vyberte obrázek',value=> isset($item)? $item->thumbnail: '',photoPreview => true}
+            {include #relatedContent, id=>'background',model=>'Model\Media',title=>'Pozadí na detailu',defaultOption=>'Vyberte obrázek',value=> isset($item)? $item->background: '',photoPreview => true}
+
+            {include #activeCheckbox}
+        
+    </div>
+    {include #formSubmit}
+</div>
+</form>
+{/block}

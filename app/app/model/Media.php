@@ -62,6 +62,27 @@ class Media extends DefaultModel {
 		}
 	}
 
+	public static function updateMediaFile($db,$id,$uuid,$filename,$serverPath,$filesize){
+		if (file_exists(ROOT_FOLDER.$serverPath)) {
+			$type = mime_content_type(ROOT_FOLDER.$serverPath);		
+			$values = array (
+				'mediaHash%s' => $uuid,
+				'filename%s' => $filename,
+				'serverPath%s' => $serverPath,
+				'type%s' => $type,
+				'filesize%i' => $filesize,
+				'modifyDate%sql' => 'NOW()',
+			);
+		
+			try {
+				$db->query("UPDATE %n SET %a WHERE [id]=%i",static::$table,$values,$id);
+				return $values;
+			} catch (Exception $e) {
+				return $e;
+			}			
+		}
+	}
+
 	public static function thumbnail($db,$hash,$width=0,$height=0) {
 		$mediaFile = Media::getByHash($db,$hash);
 		if ($mediaFile != null) {

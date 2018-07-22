@@ -73,7 +73,8 @@
                 <div class="col-md-9">
                     {ifset $item}<div class="mb-3">{$item->mediaHash|thumb,250,0|noescape}</div>{/ifset}
                     <div id="mediaContainer" data-uuid="" class="media-uploader"></div>
-                    <input type="hidden" id="mediaContainerID" name="mediaHash" value="{ifset $item}{$item->mediaHash}{/ifset}">
+                    <input type="hidden" id="mediaContainerHash" name="mediaHash" value="{ifset $item}{$item->mediaHash}{/ifset}">
+                    <input type="hidden" id="mediaContainerID" name="mediaID" value="{ifset $item}{$item->id}{/ifset}">
                 </div>
             </div>
 

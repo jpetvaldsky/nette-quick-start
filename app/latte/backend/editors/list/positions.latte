@@ -29,8 +29,8 @@
             <td>{$item->field|getAttr,"Model\Field","title"}</td>
             <td>{$item->branch|getAttr,"Model\Branch","title"}</td>
             <td>{$item->salary|truncate,30,'…'}</td>
-            <td>{$item->publishDate|date:'j. n. Y'}</td>
-            <td>{$item->expireDate|date:'j. n. Y'}</td>
+            <td>{$item->publishDate|date:'j.n.Y'}</td>
+            <td>{$item->expireDate|date:'j.n.Y'}</td>
             <td>{if $item->active == 1}<span class="badge badge-success">Aktivní</span>{else}<span class="badge badge-secondary">Vypnutý</span>{/if}</td>
             <td>
                 {include #tableButtons, item=>$item}

@@ -36,7 +36,7 @@ var positionData;
 var filterResult;
 
 function initSearchFilter(){
-    $.getJSON( "js/data/position.json", function( data ) {
+    $.getJSON( "/api/job-positions", function( data ) {
         positionData  = data;
         filterResult  = positionData.positions;
         //$('#positionResult .counter').text(filterResult.length);

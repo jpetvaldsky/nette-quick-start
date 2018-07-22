@@ -7,6 +7,7 @@ use Admin\FaqModul;
 use Admin\FieldModul;
 use Admin\HRTeamModul;
 use Admin\MediaModul;
+use Admin\NewsModul;
 use Admin\PositionModul;
 use Admin\PositionTypeModul;
 use Admin\RegionModul;
@@ -18,11 +19,13 @@ use Model\Branch;
 use Model\Faq;
 use Model\Field;
 use Model\HRTeam;
+use Model\Media;
+use Model\News;
 use Model\Position;
 use Model\PositionType;
 use Model\Region;
 use Model\User;
-use Model\Media;
+
 
 use Tracy\Debugger;
 
@@ -120,6 +123,11 @@ class Admin 	{
 					case "benefity":
 						$this->pageData['section'] = 'benefit';
 						$this->editor = new BenefitModul($this->connection);
+						$this->editor->init($this->template,$this->pageData,$route);
+						break;
+					case "novinky":
+						$this->pageData['section'] = 'news';
+						$this->editor = new NewsModul($this->connection);
 						$this->editor->init($this->template,$this->pageData,$route);
 						break;
 					case "obory":

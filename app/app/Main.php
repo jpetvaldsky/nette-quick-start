@@ -25,6 +25,11 @@ class Main 	{
 		$this->latte = new Latte\Engine;
 		$this->latte->setTempDirectory(ROOT_FOLDER.'/temp');
 
+		$this->latte->addFilter('parsedown',function($input){
+			$Parsedown = new Parsedown();
+			return $Parsedown->text($input);
+		});		
+
 		$this->latte->addFilter('thumb', function($hash,$width=0,$height=0){			
 			$file = Media::thumbnail($this->connection,$hash,$width,$height);			
 			if ($file != null) {
@@ -73,13 +78,33 @@ class Main 	{
 		$this->template = "homepage";
 
 		switch ($this->route[0]) {
+			case "novinka":
+				$newsDetail = false;
+				if (count($this->route) > 1) {
+					$newsRouteParam = explode("-",$this->route[1]);					
+					if (Model\News::check($this->connection,$newsRouteParam[0])) {
+						$this->pageData["newsItem"] = Model\News::getByID($this->connection,$newsRouteParam[0]);
+						$this->template = "news";
+					}
+				}
+				if (!$newsDetail) {
+					$this->initHomepage();
+				}
+				break;
+			case "detail-pozice":
+				break;
 			default:
-				$this->getJobsData();
-				$this->getTeamData();
-				$this->getFAQData();
-				$this->getAboutData();
+				$this->initHomepage();
 				break;
 		}
+	}
+
+	private function initHomepage(){
+		$this->getJobsData();
+		$this->getNewsData();
+		$this->getTeamData();
+		$this->getFAQData();
+		$this->getAboutData();
 	}
 
 	private function getJobsData(){
@@ -103,6 +128,21 @@ class Main 	{
 		if (count($data) > 0) {
 			$this->pageData["watchDog"] = false;
 			$this->pageData["jobPositions"] = $data;
+		}
+		
+	}
+
+	private function getNewsData(){		
+		$res = $this->connection->query('SELECT * FROM %n WHERE [active] = 1 ORDER BY [publishDate] DESC','content_news');
+		$data = array();
+		if (count($res) > 0) {
+			$news = $res->fetchAll();
+			foreach ($news as $item) {				
+				array_push($data,$item);				
+			}
+		}
+		if (count($data) > 0) {			
+			$this->pageData["news"] = $data;
 		}
 		
 	}

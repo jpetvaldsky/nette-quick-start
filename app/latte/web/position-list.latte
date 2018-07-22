@@ -12,10 +12,10 @@
                         <tbody class="filterPositionResult">
                             {foreach $jobPositions as $item}
                             <tr>
-                                <td class="positionLink"><a href="/detail-pozice/{$item->id}">{$item->title}</a></td>
+                                <td class="positionLink"><a href="/detail-pozice/{$item->id}-{$item->title|webalize}">{$item->title}</a></td>
                                 <td class="location districtMap {$item->branch|getAttr,'Model\Branch','region'|getAttr,'Model\Region','mapClass'}"><span>{$item->branch|getAttr,'Model\Branch','region'|getAttr,'Model\Region','title'}</span></td>
-                                <td class="date">{$item->publishDate|date,'j. n. Y'}</td>
-                                <td class="date deadline">{$item->expireDate|date,'j. n. Y'}</td>
+                                <td class="date">{$item->publishDate|date,'j.n.Y'}</td>
+                                <td class="date deadline">{$item->expireDate|date,'j.n.Y'}</td>
                             </tr>
                             {/foreach}
                         </tbody>

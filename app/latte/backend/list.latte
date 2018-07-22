@@ -27,7 +27,7 @@
 						<td>{$u['email']}</td>
 						<td>{$u["name"] != null ? $u["name"]: !"&nbsp;"}</td>
 						<td class="text-c">{if ($u["email_is_valid"] == 1)}{var $validCounter = $validCounter+1}<i class="fa fa-check-square-o" aria-hidden="true"></i>{else}<i class="fa fa-times" aria-hidden="true"></i>{/if}</td>
-						<td class="text-c">{if ($u["submission_date"] != null)}{var $applyCounter = $applyCounter+1}{$u["submission_date"]|date:'j. n. Y'}{else}<i class="fa fa-times" aria-hidden="true"></i>{/if}</td>
+						<td class="text-c">{if ($u["submission_date"] != null)}{var $applyCounter = $applyCounter+1}{$u["submission_date"]|date:'j.n.Y'}{else}<i class="fa fa-times" aria-hidden="true"></i>{/if}</td>
 						<td class="text-c">{$u["legal_entity"] != null ? $u["legal_entity"]: !"&nbsp;"}</td>
 						<td class="text-c"><a href="/backend/detail/{$u['id']}">detail</a>
 					</tr>

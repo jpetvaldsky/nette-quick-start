@@ -52,7 +52,7 @@
 {ifset $formData[$formItem->name]}
 value="{ifset $formItem->format}
 {if $formItem->format == "date"}
-{$formData[$formItem->name]|date:'j. n. Y'}
+{$formData[$formItem->name]|date:'j.n.Y'}
 {elseif $formItem->format == "firstUpper"}
 {$formData[$formItem->name]|firstUpper}
 {else}
